@@ -537,6 +537,83 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 </script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const uploadArea = document.getElementById('uploadArea');
+    const fileInput = document.getElementById('paymentProof');
+    const previewArea = document.getElementById('previewArea');
+    const proofPreview = document.getElementById('proofPreview');
+    const removeProof = document.getElementById('removeProof');
+
+    const formFileInput = document.getElementById('form_payment_proof');
+    const formTxHash = document.getElementById('form_tx_hash');
+    const formEmail = document.getElementById('form_email');
+    const formAmount = document.getElementById('form_amount');
+    const formPackage = document.getElementById('form_package');
+    const submitPaymentBtn = document.getElementById('submitPayment');
+    const paymentForm = document.getElementById('paymentForm');
+
+    // Click area to trigger file input
+    uploadArea.addEventListener('click', () => {
+        fileInput.click();
+    });
+
+    // Handle file change
+    fileInput.addEventListener('change', function () {
+        const file = this.files[0];
+        if (!file) return;
+
+        // Show preview if image
+        if (file.type.startsWith('image/')) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                proofPreview.src = e.target.result;
+                previewArea.classList.remove('hidden');
+            };
+            reader.readAsDataURL(file);
+        } else {
+            // For PDF or other types, just show default icon
+            proofPreview.src = 'https://via.placeholder.com/200x150.png?text=File+Ready';
+            previewArea.classList.remove('hidden');
+        }
+
+        // Copy file to hidden form input
+        formFileInput.files = fileInput.files;
+    });
+
+    // Remove uploaded proof
+    removeProof.addEventListener('click', function (e) {
+        e.preventDefault();
+        fileInput.value = '';
+        proofPreview.src = '';
+        previewArea.classList.add('hidden');
+    });
+
+    // Submit payment
+    submitPaymentBtn.addEventListener('click', function () {
+        const txHash = document.getElementById('txHash').value.trim();
+        const email = document.getElementById('payerEmail').value.trim();
+
+        if (!email) {
+            alert('Please enter your email.');
+            return;
+        }
+
+        // Optional: Add validation for file size/type if needed
+
+        // Copy values to form
+        formTxHash.value = txHash;
+        formEmail.value = email;
+
+        // Optional: Set amount and package if you're using JS to set those
+        formAmount.value = '100'; // example
+        formPackage.value = 'Gold'; // example
+
+        // Submit form
+        paymentForm.submit();
+    });
+});
+</script>
 
 </body>
 </html>
