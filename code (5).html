@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Opportunity Expired | Jennifer Aniston Meeting</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap');
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .hero-section {
+            background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .countdown-animation {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .refund-notice {
+            border-left: 4px solid #667eea;
+        }
+    </style>
+</head>
+<body>
+    <div class="min-h-screen flex flex-col">
+        <!-- Header -->
+        <header class="hero-section py-8 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-4xl mx-auto text-center">
+                <h1 class="text-3xl sm:text-4xl font-bold mb-4">Opportunity Closed</h1>
+                <p class="text-xl sm:text-xl opacity-90">Your chance to meet Jennifer Aniston has expired</p>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="flex-grow py-12 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden">
+                <!-- Expiration Notice -->
+                <div class="p-8 sm:p-10 border-b">
+                    <div class="flex flex-col sm:flex-row items-center mb-8">
+                        <div class="w-24 h-24 rounded-full bg-red-100 flex items-center justify-center mb-4 sm:mb-0 sm:mr-6">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </div>
+                        <div class="text-center sm:text-left">
+                            <h2 class="text-2xl font-bold text-gray-800">Payment Window Expired</h2>
+                            <p class="text-gray-600 mt-1">Your reservation was automatically canceled</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-6">
+                        <div class="flex">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+                            </svg>
+                            <p class="ml-3 text-sm text-yellow-700">
+                                The payment window for this exclusive opportunity closed before your payment was completed.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center justify-center mt-8 countdown-animation">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/30f6bf86-e4d6-4e1f-ad07-0b507fd984e2.png" alt="Jennifer Aniston smiling professionally with arms crossed in casual attire against a neutral studio background" class="rounded-lg shadow-md w-full max-w-md">
+                    </div>
+                </div>
+
+                <!-- Refund Information -->
+                <div class="p-8 sm:p-10 bg-gray-50">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-4">Refund Information</h3>
+                    <div class="refund-notice bg-gray-100 rounded-lg p-4 mb-6">
+                        <div class="flex">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-500" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v1a1 1 0 001 1h1a1 1 0 100-2h-1V9z" clip-rule="evenodd" />
+                            </svg>
+                            <p class="ml-3 text-sm text-gray-700">
+                                If payment was processed accidentally, it will be automatically refunded within 1 hour of cancellation.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                            </svg>
+                            <p class="ml-3 text-gray-700">Refunds are processed automatically to your original payment method.</p>
+                        </div>
+                        <div class="flex items-start">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                            </svg>
+                            <p class="ml-3 text-gray-700">Processing times vary by bank but typically appear within 3-5 business days.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8 pt-6 border-t border-gray-200 text-center">
+                        <p class="text-sm text-gray-500">
+                            If you believe this cancellation was made in error or have questions about refunds, please contact our support team.
+                        </p>
+                        <a href="mailto:support@example.com" class="inline-block mt-4 px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors duration-200">
+                            Contact Support
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="py-8 px-4 sm:px-6 lg:px-8 bg-gray—800 text-white">
+            <div class="max-w-4xl mx-auto text-center">
+                <p class="text-gray-500 text-sm">
+                    This event was powered by Celebrity Connections Inc. All rights reserved.
+                </p>
+                <p class="text-gray-400 text-xs mt-2">
+                    Jennifer Aniston name and likeness used with permission for promotional purposes only.
+                </p>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
+
