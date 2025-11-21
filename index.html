@@ -1,518 +1,701 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meet Jennifer Aniston - Exclusive Fan Experience</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Playfair+Display:wght@700&display=swap');
-        
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background-color: #f8f8f8;
-        }
-        
-        .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
-                        url('https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/ea9a2fa5-fa6d-4a47-b964-50ddf7163140.png') no-repeat center center/cover;
-            height: 100vh;
-            color: white;
-        }
-        
-        .title-font {
-            font-family: 'Playfair Display', serif;
-        }
-        
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: rgba(0, 0, 0, 0.7);
-            z-index: 1000;
-            display: none;
-        }
-        
-        .modal {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: white;
-            padding: 2.5rem;
-            z-index: 1001;
-            border-radius: 10px;
-            display: none;
-            width: 90%;
-            max-width: 550px;
-            max-height: 85vh;
-            overflow-y: auto;
-            animation: fadeIn 0.3s ease-out;
-            -webkit-overflow-scrolling: touch;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translate(-50%, -55%); }
-            to { opacity: 1; transform: translate(-50%, -50%); }
-        }
-        
-        .testimonial-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-        }
-        
-        .transition-all {
-            transition: all 0.3s ease;
-        }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Thane Rivers — Transfer Vote Dashboard</title>
+  <meta name="description" content="Professional dashboard for voting where Thane Rivers should be transferred to. Mock payments only — no real processing." />
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    /* ---------------------------------------------
+       Global Reset
+       --------------------------------------------- */
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body,#app{height:100%}
+    body{
+      font-family:Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(180deg,#0b1432 0%, #071026 60%);
+      color:#e6eef8;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      padding:24px;
+    }
+
+    /* ---------------------------------------------
+       Container and grid
+       --------------------------------------------- */
+    .container{
+      max-width:1200px;
+      margin:0 auto;
+      display:grid;
+      grid-template-columns: 320px 1fr;
+      gap:20px;
+      align-items:start;
+    }
+
+    /* ---------------------------------------------
+       Sidebar (wallet-like)
+       --------------------------------------------- */
+    .sidebar{
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:16px;
+      padding:20px;
+      box-shadow: 0 8px 30px rgba(4,12,30,0.6), inset 0 1px 0 rgba(255,255,255,0.02);
+      min-height:560px;
+      position:relative;
+    }
+
+    .logo{
+      display:flex;gap:12px;align-items:center;margin-bottom:12px
+    }
+    .logo .mark{
+      width:46px;height:46px;border-radius:10px;background:linear-gradient(135deg,#2dd4bf,#3b82f6);display:flex;align-items:center;justify-content:center;font-weight:700;color:#031024;font-size:18px
+    }
+    .brand{
+      display:flex;flex-direction:column
+    }
+    .brand strong{font-size:16px}
+    .brand small{font-size:12px;color:#9fb3d9}
+
+    .wallet-balance{
+      margin-top:18px;padding:14px;border-radius:12px;background:linear-gradient(90deg, rgba(255,255,255,0.02),rgba(255,255,255,0.01));
+      border:1px solid rgba(255,255,255,0.03);
+    }
+
+    .balance-row{display:flex;justify-content:space-between;align-items:center}
+    .balance-row h3{font-size:20px}
+    .balance-row .small{font-size:12px;color:#9fb3d9}
+
+    .nav{
+      margin-top:20px;display:flex;flex-direction:column;gap:8px
+    }
+    .nav a{
+      display:flex;align-items:center;gap:10px;padding:10px;border-radius:10px;color:#cfe6ff;text-decoration:none;font-weight:600;border:1px solid transparent
+    }
+    .nav a.active{background:linear-gradient(90deg, rgba(255,255,255,0.02),rgba(255,255,255,0.01));border-color:rgba(255,255,255,0.03)}
+
+    .stat-card{margin-top:18px;padding:12px;border-radius:10px;background:linear-gradient(90deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));border:1px solid rgba(255,255,255,0.02)}
+    .stat-card .label{font-size:12px;color:#9fb3d9}
+    .stat-card .value{font-size:20px;font-weight:700;margin-top:6px}
+
+    /* ---------------------------------------------
+       Main area
+       --------------------------------------------- */
+    .main{
+      min-height:560px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.00));border-radius:16px;padding:20px;border:1px solid rgba(255,255,255,0.03);
+    }
+    .topbar{display:flex;justify-content:space-between;align-items:center}
+    .title{display:flex;flex-direction:column}
+    .title h1{font-size:20px}
+    .title p{font-size:12px;color:#9fb3d9}
+
+    .controls{display:flex;gap:12px;align-items:center}
+    .btn{
+      background:linear-gradient(90deg,#2dd4bf,#3b82f6);
+      border:none;padding:10px 14px;border-radius:10px;color:#031024;font-weight:700;cursor:pointer
+    }
+    .ghost{
+      background:transparent;border:1px solid rgba(255,255,255,0.06);padding:10px 12px;border-radius:10px;color:#cfe6ff;font-weight:600;cursor:pointer
+    }
+
+    /* ---------------------------------------------
+       Voting area
+       --------------------------------------------- */
+    .voting-panel{margin-top:18px;display:grid;grid-template-columns:1fr 340px;gap:18px}
+    .card{background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));padding:16px;border-radius:12px;border:1px solid rgba(255,255,255,0.02)}
+
+    .options{display:flex;flex-direction:column;gap:12px}
+    .option{
+      padding:12px;border-radius:10px;background:linear-gradient(90deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));display:flex;justify-content:space-between;align-items:center;border:1px solid rgba(255,255,255,0.02)
+    }
+    .option .meta{display:flex;flex-direction:column}
+    .option .meta .name{font-weight:700}
+    .option .meta .sub{font-size:12px;color:#9fb3d9}
+
+    .progress-wrap{margin-top:8px}
+    .progress{height:10px;background:rgba(255,255,255,0.05);border-radius:8px;overflow:hidden}
+    .progress .bar{height:100%;width:0%;border-radius:8px;background:linear-gradient(90deg,#ffbf69,#ff7ab6)}
+
+    .vote-controls{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+    .vote-qty{display:flex;gap:8px}
+    .vote-qty button{padding:8px 10px;border-radius:8px;border:none;background:rgba(255,255,255,0.03);color:#eaf6ff;font-weight:700;cursor:pointer}
+    .vote-qty button.active{background:linear-gradient(90deg,#2dd4bf,#3b82f6);color:#031024}
+
+    /* ---------------------------------------------
+       Sidebar right
+       --------------------------------------------- */
+    .right-panel{display:flex;flex-direction:column;gap:12px}
+    .chart-wrap{height:220px}
+
+    .recent-votes{max-height:220px;overflow:auto;padding:8px;display:flex;flex-direction:column;gap:8px}
+    .vote-item{display:flex;justify-content:space-between;align-items:center;padding:8px;border-radius:8px;background:rgba(255,255,255,0.01);border:1px solid rgba(255,255,255,0.02)}
+    .vote-item .who{font-weight:700}
+    .vote-item .amt{font-weight:800}
+
+    /* ---------------------------------------------
+       Modal
+       --------------------------------------------- */
+    .modal-backdrop{position:fixed;inset:0;background:rgba(2,6,23,0.6);display:none;align-items:center;justify-content:center;z-index:120}
+    .modal{width:420px;background:linear-gradient(180deg,#07142b,#051028);border-radius:12px;padding:18px;border:1px solid rgba(255,255,255,0.03)}
+    .modal h3{margin-bottom:6px}
+    .pay-methods{display:flex;gap:8px;margin-top:10px}
+    .pay-method{flex:1;padding:10px;border-radius:8px;text-align:center;border:1px solid rgba(255,255,255,0.03);cursor:pointer}
+    .pay-method.active{background:linear-gradient(90deg,#2dd4bf,#3b82f6);color:#031024}
+    .input{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:#e6eef8;margin-top:8px}
+
+    /* ---------------------------------------------
+       Notification toasts
+       --------------------------------------------- */
+    .toast-wrap{position:fixed;right:20px;top:20px;display:flex;flex-direction:column;gap:8px;z-index:200}
+    .toast{background:#0b1a33;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);min-width:260px}
+    .toast .who{font-weight:800}
+
+    /* ---------------------------------------------
+       Responsive
+       --------------------------------------------- */
+    @media(max-width:980px){
+      .container{grid-template-columns:1fr;}
+      .voting-panel{grid-template-columns:1fr}
+      .right-panel{order:2}
+      .sidebar{order:2}
+      .main{order:1}
+      .modal{width:92%}
+    }
+
+    /* ---------------------------------------------
+       Fancy small touches
+       --------------------------------------------- */
+    .sparkle{position:absolute;right:12px;top:12px;font-size:12px;color:#9fb3d9}
+
+    .leader-badge{background:linear-gradient(90deg,#ffd166,#ff7ab6);color:#031024;padding:6px 8px;border-radius:8px;font-weight:800}
+
+    /* tiny scrollbar for recent votes */
+    .recent-votes::-webkit-scrollbar{width:8px}
+    .recent-votes::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.03);border-radius:8px}
+
+  </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="bg-white shadow-md fixed w-full z-50">
-        <div class="container mx-auto px-6 py-4">
-            <div class="flex justify-between items-center">
-                <div class="text-2xl font-bold title-font text-indigo-700">Jennifer Aniston</div>
-                <div class="hidden md:flex space-x-8">
-                    <a href="#about" class="text-gray-700 hover:text-indigo-600 transition-all">About</a>
-                    <a href="#experience" class="text-gray-700 hover:text-indigo-600 transition-all">Experience</a>
-                    <a href="#testimonials" class="text-gray-700 hover:text-indigo-600 transition-all">Testimonials</a>
-                    <a href="#faq" class="text-gray-700 hover:text-indigo-600 transition-all">FAQ</a>
-                </div>
-                <button id="applyNavBtn" class="hidden md:block bg-indigo-600 text-white px-6 py-2 rounded-full hover:bg-indigo-700 transition-all">
-                    Apply Now
-                </button>
-                <button id="mobileMenuBtn" class="md:hidden text-gray-700">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                    </svg>
-                </button>
+  <div id="app">
+    <div class="container">
+      <!-- LEFT SIDEBAR -->
+      <aside class="sidebar" aria-label="Sidebar">
+        <div class="logo">
+          <div class="mark">TR</div>
+          <div class="brand">
+            <strong>ThaneVote</strong>
+            <small>Fan transfer voting — Wallet dashboard UI</small>
+          </div>
+        </div>
+
+        <div class="wallet-balance">
+          <div class="balance-row">
+           
+          
+          </div>
+
+          <div style="margin-top:12px;display:flex;gap:8px;justify-content:space-between">
+            <button class="btn" id="topupBtn">Top Up</button>
+            <button class="ghost" id="withdrawBtn">Withdraw</button>
+          </div>
+        </div>
+
+        <nav class="nav" aria-label="Main navigation">
+          <a href="#" class="active">Dashboard</a>
+          <a href="#">Vote History</a>
+          <a href="#">Rewards</a>
+          <a href="#">Settings</a>
+          <a href="#">Help Center</a>
+        </nav>
+
+        <div class="stat-card">
+          <div class="label">Current leader</div>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px">
+            <div>
+              <div class="value" id="leader-name">Mississippi</div>
+              <div class="small">Lead by 18%</div>
             </div>
+            <div class="leader-badge">#1</div>
+          </div>
         </div>
-    </nav>
 
-    <!-- Hero Section -->
-    <section class="hero flex items-center justify-center text-center pt-20" id="home">
-        <div class="container mx-auto px-6">
-            <h1 class="text-4xl md:text-6xl font-bold mb-6 title-font">Exclusive Meet & Greet</h1>
-            <h2 class="text-2xl md:text-3xl mb-8">With Jennifer Aniston</h2>
-            <p class="text-xl mb-12 max-w-2xl mx-auto">Join a select group of fans for a private encounter with one of Hollywood's most beloved stars.</p>
-            <button id="applyHeroBtn" class="bg-indigo-600 text-white px-8 py-4 rounded-full text-lg hover:bg-indigo-700 transition-all transform hover:scale-105">
-                Apply for the Experience
-            </button>
+        <div class="stat-card">
+          <div class="label">Big Prize</div>
+          <div class="value">2x Plane tickets + 2-week vacation</div>
+          <div class="small">Winners chosen from top-tier voters (1000 vote entries)</div>
         </div>
-    </section>
 
-    <!-- About Section -->
-    <section class="py-20 bg-white" id="about">
-        <div class="container mx-auto px-6">
-            <h2 class="text-3xl md:text-4xl font-bold mb-16 text-center title-font">About the Experience</h2>
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-              <div>
-    <img src="jennifer-aniston.png" alt="Jennifer Aniston smiling at a fan meet event in an elegant dress" class="rounded-lg shadow-xl" />
-</div>
+        <div style="position:absolute;bottom:18px;left:20px;font-size:12px;color:#9fb3d9">
+          <div>Made with ❤️ for Thane Rivers fans</div>
+          <div style="margin-top:6px">Mock payments only — no real payment gateway</div>
+        </div>
+      </aside>
 
-                <div>
-                    <h3 class="text-2xl font-bold mb-4">A Moment You'll Never Forget</h3>
-                    <p class="text-gray-700 mb-6">This exclusive opportunity allows you to meet Jennifer Aniston in an intimate setting, away from large crowds and hectic schedules. Selected fans will enjoy personalized attention during this special encounter.</p>
-                    <p class="text-gray-700 mb-6">Jennifer is known for her warmth and generosity with fans, and this private meet is designed to create meaningful, lasting memories for both her and attendees.</p>
-                    <button id="applyAboutBtn" class="bg-indigo-600 text-white px-6 py-3 rounded-full hover:bg-indigo-700 transition-all">
-                        Apply Now
-                    </button>
-                </div>
+      <!-- MAIN -->
+      <main class="main">
+        <div class="topbar">
+          <div class="title">
+            <h1>Where should Thane Rivers be transferred?</h1>
+            <p>Vote with funds — voting packages available. Trending now: Mississippi leading.</p>
+          </div>
+
+          <div class="controls">
+            <div style="text-align:right">
+              <div style="font-size:12px;color:#9fb3d9">Total Votes</div>
+              <div style="font-weight:800;font-size:18px" id="totalVotes">5,420</div>
             </div>
+            <button class="btn" id="voteNow">Cast Vote</button>
+            <button class="ghost" id="shareBtn">Share</button>
+          </div>
         </div>
-    </section>
 
-    <!-- Experience Details -->
-    <section class="py-20 bg-gray-100" id="experience">
-        <div class="container mx-auto px-6">
-            <h2 class="text-3xl md:text-4xl font-bold mb-16 text-center title-font">The Exclusive Experience</h2>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-white p-8 rounded-lg shadow-md text-center hover:shadow-lg transition-all">
-                    <div class="text-indigo-600 mb-4">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-bold mb-4">Personal Interaction</h3>
-                    <p class="text-gray-700">15-minute one-on-one conversation with Jennifer in a private setting.</p>
-                </div>
-                <div class="bg-white p-8 rounded-lg shadow-md text-center hover:shadow-lg transition-all">
-                    <div class="text-indigo-600 mb-4">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" />
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13l-3 3m0 0l-3-3m3 3V8" />
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-bold mb-4">VIP Package</h3>
-                    <p class="text-gray-700">Includes signed memorabilia, professional photo session, and exclusive gifts.</p>
-                </div>
-                <div class="bg-white p-8 rounded-lg shadow-md text-center hover:shadow-lg transition-all">
-                    <div class="text-indigo-600 mb-4">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-bold mb-4">Luxury Setting</h3>
-                    <p class="text-gray-700">Held in an elegant private venue with refreshments and comfortable seating.</p>
-                </div>
+        <div class="voting-panel">
+          <!-- Voting Options -->
+          <section class="card">
+            <h2 style="margin-bottom:8px">Choose destination</h2>
+            <p style="font-size:12px;color:#9fb3d9">Select a state and pick a vote package. Packages give discounts and prize eligibility.</p>
+
+            <div class="options" id="optionsList">
+              <!-- options injected by JS -->
             </div>
-        </div>
-    </section>
 
-    <!-- Testimonials -->
-    <section class="py-20 bg-indigo-50" id="testimonials">
-        <div class="container mx-auto px-6">
-            <h2 class="text-3xl md:text-4xl font-bold mb-16 text-center title-font text-indigo-800">What Fans Say</h2>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="testimonial-card bg-white p-8 rounded-lg shadow-md transition-all">
-                    <div class="flex items-center mb-4">
-                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/9e953d04-d240-400a-ab50-dbface0d7c89.png" alt="Sarah, marketing executive from Los Angeles smiling" class="rounded-full w-16 h-16 mr-4">
-                        <div>
-                            <h4 class="font-bold">Sarah M.</h4>
-                            <p class="text-gray-600 text-sm">Los Angeles</p>
-                        </div>
-                    </div>
-                    <p class="text-gray-700 italic">"Meeting Jennifer was magical. She's even kinder and more genuine than I imagined. The entire experience was flawlessly organized."</p>
-                    <div class="flex mt-4 text-yellow-400">
-                        ★ ★ ★ ★ ★
-                    </div>
-                </div>
-                <div class="testimonial-card bg-white p-8 rounded-lg shadow-md transition-all">
-                    <div class="flex items-center mb-4">
-                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/4f029cd1-7fcb-4de0-85e7-963f2b815402.png" alt="James, business owner from Chicago looking happy" class="rounded-full w-16 h-16 mr-4">
-                        <div>
-                            <h4 class="font-bold">James L.</h4>
-                            <p class="text-gray-600 text-sm">Chicago</p>
-                        </div>
-                    </div>
-                    <p class="text-gray-700 italic">"The VIP treatment was worth every penny. Jennifer took time with each guest - I'll cherish the memory forever."</p>
-                    <div class="flex mt-4 text-yellow-400">
-                        ★ ★ ★ ★ ★
-                    </div>
-                </div>
-                <div class="testimonial-card bg-white p-8 rounded-lg shadow-md transition-all">
-                    <div class="flex items-center mb-4">
-                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/7b2f9d37-a4e8-4508-a68e-b0a300259548.png" alt="Emma, teacher from New York with a joyful expression" class="rounded-full w-16 h-16 mr-4">
-                        <div>
-                            <h4 class="font-bold">Emma C.</h4>
-                            <p class="text-gray-600 text-sm">New York</p>
-                        </div>
-                    </div>
-                    <p class="text-gray-700 italic">"I've been a fan since Friends premiered. This intimate meeting was beyond what I dreamed possible - absolutely perfect experience."</p>
-                    <div class="flex mt-4 text-yellow-400">
-                        ★ ★ ★ ★ ★
-                    </div>
-                </div>
+            <div style="margin-top:12px;display:flex;gap:8px;align-items:center">
+              <div style="flex:1">
+                <div class="small">Selected:</div>
+                <div id="selectedState" style="font-weight:800;margin-top:6px">Mississippi</div>
+              </div>
+              <div style="text-align:right">
+                <div class="small">Package</div>
+                <div id="selectedPackage" style="font-weight:800;margin-top:6px">500 Votes</div>
+              </div>
             </div>
-        </div>
-    </section>
 
-    <!-- FAQ -->
-    <section class="py-20 bg-white" id="faq">
-        <div class="container mx-auto px-6 max-w-4xl">
-            <h2 class="text-3xl md:text-4xl font-bold mb-16 text-center title-font">Frequently Asked Questions</h2>
-            
-            <div class="mb-8 border-b pb-4" x-data="{open: false}">
-                <button @click="open = !open" class="flex justify-between items-center w-full text-left">
-                    <h3 class="text-xl font-bold">How does the application process work?</h3>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 transition-transform duration-300" :class="{'rotate-180': open}" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                    </svg>
-                </button>
-                <div x-show="open" x-transition class="mt-4 text-gray-700">
-                    <p>Applications are reviewed by our team to select attendees who demonstrate genuine appreciation for Jennifer's work. We consider application completeness, thoughtfulness of responses, and availability. Selected applicants will be notified via email.</p>
-                </div>
+            <div style="display:flex;gap:8px;align-items:center;margin-top:14px">
+              <button class="btn" id="openPay">Proceed to Payment</button>
+              <button class="ghost" id="autoVote">Auto-vote 5x (Demo)</button>
             </div>
-            
-            <div class="mb-8 border-b pb-4" x-data="{open: false}">
-                <button @click="open = !open" class="flex justify-between items-center w-full text-left">
-                    <h3 class="text-xl font-bold">What is included in the VIP package?</h3>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 transition-transform duration-300" :class="{'rotate-180': open}" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                    </svg>
-                </button>
-                <div x-show="open" x-transition class="mt-4 text-gray-700">
-                    <p>The VIP package includes a 15-minute private conversation with Jennifer, a professional photo session with digital copies, an autographed item, exclusive Jennifer Aniston merchandise, and refreshments during the event.</p>
-                </div>
+
+            <div style="margin-top:14px;font-size:12px;color:#9fb3d9">
+              <strong>Note:</strong> This demo contains mocked payment flows and simulated real-time votes for presentation only.
             </div>
-            
-            <div class="mb-8 border-b pb-4" x-data="{open: false}">
-                <button @click="open = !open" class="flex justify-between items-center w-full text-left">
-                    <h3 class="text-xl font-bold">Can I bring a guest?</h3>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 transition-transform duration-300" :class="{'rotate-180': open}" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                    </svg>
-                </button>
-                <div x-show="open" x-transition class="mt-4 text-gray-700">
-                    <p>Due to the intimate nature of this experience, each selected applicant attends individually. Accommodations may be available for companions who would like to wait in the adjacent lounge area.</p>
-                </div>
+          </section>
+
+          <!-- Right panel: chart + live votes -->
+          <aside class="right-panel">
+            <div class="card chart-wrap">
+              <canvas id="stateChart" style="max-height:220px"></canvas>
             </div>
-            
-            <div class="mb-8 border-b pb-4" x-data="{open: false}">
-                <button @click="open = !open" class="flex justify-between items-center w-full text-left">
-                    <h3 class="text-xl font-bold">Where and when will the event take place?</h3>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 transition-transform duration-300" :class="{'rotate-180': open}" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                    </svg>
-                </button>
-                <div x-show="open" x-transition class="mt-4 text-gray-700">
-                    <p>The event will be held in Los Angeles at a private venue. Exact date, time and location details will be provided upon application approval. We schedule multiple sessions to accommodate selected guests.</p>
-                </div>
+
+            <div class="card">
+              <div style="display:flex;justify-content:space-between;align-items:center">
+                <strong>Recent votes</strong>
+                <small style="color:#9fb3d9">Live feed</small>
+              </div>
+
+              <div class="recent-votes" id="recentVotes">
+                <!-- injected -->
+              </div>
             </div>
-        </div>
-    </section>
 
-    <!-- CTA Section -->
-    <section class="py-20 bg-indigo-600 text-white">
-        <div class="container mx-auto px-6 text-center">
-            <h2 class="text-3xl md:text-4xl font-bold mb-6 title-font">Ready for an Unforgettable Experience?</h2>
-            <p class="text-xl mb-8 max-w-2xl mx-auto opacity-90">Don't miss your chance to meet Jennifer Aniston in this exclusive private setting.</p>
-            <button id="applyBottomBtn" class="bg-white text-indigo-600 px-8 py-4 rounded-full text-lg font-bold hover:bg-gray-100 transition-all transform hover:scale-105">
-                Apply Now
-            </button>
-        </div>
-    </section>
+            <div class="card">
+              <div style="display:flex;justify-content:space-between;align-items:center">
+                <strong>Price table</strong>
+                <small style="color:#9fb3d9">Auto-discounts shown</small>
+              </div>
 
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-12">
-        <div class="container mx-auto px-6">
-            <div class="grid md:grid-cols-4 gap-8">
-                <div>
-                    <h3 class="text-xl font-bold mb-4 title-font">Jennifer Aniston</h3>
-                    <p class="opacity-70">Creating meaningful connections with fans through exclusive experiences.</p>
-                </div>
-                <div>
-                    <h4 class="font-bold mb-4">Quick Links</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#about" class="opacity-70 hover:opacity-100 transition-all">About the Experience</a></li>
-                        <li><a href="#experience" class="opacity-70 hover:opacity-100 transition-all">VIP Package</a></li>
-                        <li><a href="#testimonials" class="opacity-70 hover:opacity-100 transition-all">Testimonials</a></li>
-                        <li><a href="#faq" class="opacity-70 hover:opacity-100 transition-all">FAQ</a></li>
-                    </ul>
-                </div>
-               
-              
+              <div style="margin-top:8px;display:flex;flex-direction:column;gap:8px">
+                <div style="display:flex;justify-content:space-between"><div>100 votes</div><div>$10</div></div>
+                <div style="display:flex;justify-content:space-between"><div>200 votes</div><div>$18</div></div>
+                <div style="display:flex;justify-content:space-between"><div>500 votes</div><div>$40</div></div>
+                <div style="display:flex;justify-content:space-between;color:#ffd2aa"><div>1000 votes</div><div><strong>$80</strong> <small style="color:#9fb3d9">(20% off)</small></div></div>
+              </div>
             </div>
-            <div class="border-t border-gray-800 mt-12 pt-8 text-center opacity-70">
-                <p>&copy; 2025 Jennifer Aniston Fan Experiences. All rights reserved.</p>
+
+          </aside>
+        </div>
+
+        <!-- activity / extras -->
+        <div style="margin-top:16px;display:grid;grid-template-columns:1fr 1fr;gap:12px">
+          <div class="card">
+            <strong>Campaign progress</strong>
+            <div style="margin-top:10px;display:flex;gap:12px;align-items:center">
+              <div style="flex:1">
+                <div style="font-size:12px;color:#9fb3d9">Votes to reach target</div>
+                <div style="font-weight:800;font-size:20px;margin-top:6px" id="toTarget">12,580</div>
+              </div>
+              <div style="width:120px">
+                <div style="font-size:12px;color:#9fb3d9">Target</div>
+                <div style="font-weight:800;font-size:18px;margin-top:6px">20,000</div>
+              </div>
             </div>
-        </div>
-    </footer>
+          </div>
 
-    <!-- Application Modal -->
-    <div id="modalOverlay" class="modal-overlay"></div>
-    <div id="applicationModal" class="modal">
-        <div class="relative">
-            <button id="closeModal" class="absolute top-0 right-0 text-gray-500 hover:text-gray-700">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-            </button>
-            
-            <h2 class="text-2xl font-bold mb-6 text-center title-font text-indigo-700">Apply for the Meet & Greet</h2>
-            
-           <form id="applicationForm" action="https://formsubmit.co/jenniferaniston.chatline@gmail.com" method="POST" class="space-y-6">
-    <!-- Hidden FormSubmit settings -->
-    <input type="hidden" name="_captcha" value="false">
-    <input type="hidden" name="_next" value="https://jennifer-aniston-meetup.vercel.app/thanks.html">
-
-    <div>
-        <label for="fullName" class="block text-gray-700 font-medium mb-2">Full Legal Name*</label>
-        <input type="text" id="fullName" name="Full Name" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
-    </div>
-
-    <div>
-        <label for="email" class="block text-gray-700 font-medium mb-2">Professional Email Address*</label>
-        <input type="email" id="email" name="Email" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
-    </div>
-
-    <div>
-        <label for="phone" class="block text-gray-700 font-medium mb-2">Mobile Phone Number*</label>
-        <input type="tel" id="phone" name="Phone" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
-    </div>
-
-    <div>
-        <label for="age" class="block text-gray-700 font-medium mb-2">Age*</label>
-        <input type="number" id="age" name="Age" min="18" max="90" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
-    </div>
-
-    <div class="pt-4 border-t border-gray-200">
-        <h3 class="text-xl font-bold mb-4 text-indigo-700">Personal Background</h3>
-
-        <div class="mb-6">
-            <label for="profession" class="block text-gray-700 font-medium mb-2">Current Profession*</label>
-            <input type="text" id="profession" name="Profession" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
-        </div>
-
-        <div class="mb-6">
-            <label class="block text-gray-700 font-medium mb-2">How would you describe your personality?*</label>
-            <div class="space-y-2">
-                <div class="flex items-center">
-                    <input type="checkbox" id="friendly" name="Personality" value="Friendly/Approachable" class="mr-2">
-                    <label for="friendly" class="text-gray-700">Friendly/Approachable</label>
-                </div>
-                <div class="flex items-center">
-                    <input type="checkbox" id="reserved" name="Personality" value="Reserved/Thoughtful" class="mr-2">
-                    <label for="reserved" class="text-gray-700">Reserved/Thoughtful</label>
-                </div>
-                <div class="flex items-center">
-                    <input type="checkbox" id="energetic" name="Personality" value="Energetic/Enthusiastic" class="mr-2">
-                    <label for="energetic" class="text-gray-700">Energetic/Enthusiastic</label>
-                </div>
-                <div class="flex items-center">
-                    <input type="checkbox" id="calm" name="Personality" value="Calm/Easygoing" class="mr-2">
-                    <label for="calm" class="text-gray-700">Calm/Easygoing</label>
-                </div>
+          <div class="card">
+            <strong>Prize eligibility</strong>
+            <p style="font-size:12px;color:#9fb3d9;margin-top:8px">Buy 1000-vote packages to get automatic entry to the plane ticket + vacation raffle.</p>
+            <div style="display:flex;gap:8px;margin-top:10px">
+              <div style="flex:1">
+                <div class="small">This round entries</div>
+                <div style="font-weight:800;margin-top:6px">42 entries</div>
+              </div>
+              <div style="flex:1">
+                <div class="small">Winners</div>
+                <div style="font-weight:800;margin-top:6px">2</div>
+              </div>
             </div>
+          </div>
         </div>
 
-        <div class="mb-6">
-            <label for="hobbies" class="block text-gray-700 font-medium mb-2">Your Hobbies & Interests*</label>
-            <textarea id="hobbies" name="Hobbies" rows="2" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" required></textarea>
-        </div>
+      </main>
     </div>
 
-    <div>
-        <label for="journey" class="block text-gray-700 font-medium mb-2">How did you first discover Jennifer Aniston's work?*</label>
-        <textarea id="journey" name="Discovery" rows="3" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" required></textarea>
-    </div>
+    <!-- modal: payment -->
+    <div class="modal-backdrop" id="modalBackdrop">
+      <div class="modal" role="dialog" aria-modal="true" aria-label="Payment dialog">
+        <h3>Proceed to payment</h3>
+        <p style="font-size:12px;color:#9fb3d9">Choose payment method and confirm. (Demo only — no real charges)</p>
 
-    <div class="pt-4 border-t border-gray-200">
-        <h3 class="text-xl font-bold mb-4 text-indigo-700">Event Expectations</h3>
-
-        <div class="mb-6">
-            <label for="expectations" class="block text-gray-700 font-medium mb-2">What would make this experience special for you?*</label>
-            <textarea id="expectations" name="Expectations" rows="3" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" required></textarea>
+        <div class="pay-methods" style="margin-top:12px">
+          <div class="pay-method active" data-method="crypto">Cryptocurrency</div>
+          <div class="pay-method" data-method="gift">Gift Card</div>
+          <div class="pay-method" data-method="card">Credit Card</div>
         </div>
 
-        <div class="mb-6">
-            <label for="question" class="block text-gray-700 font-medium mb-2">If you could ask Jennifer one question, what would it be?*</label>
-            <textarea id="question" name="Question for Jennifer" rows="2" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" required></textarea>
+        <div style="margin-top:12px">
+          <input class="input" placeholder="Your name" id="payerName" />
+          <input class="input" placeholder="Email (optional)" id="payerEmail" />
+          <input class="input" placeholder="Promo code (if any)" id="promoCode" />
         </div>
 
-        <div class="mb-6">
-            <label class="block text-gray-700 font-medium mb-2">Have you ever met Jennifer Aniston before?*</label>
-            <div class="flex space-x-4">
-                <label class="inline-flex items-center">
-                    <input type="radio" name="Met Before" value="Yes" class="mr-2" required>
-                    <span>Yes</span>
-                </label>
-                <label class="inline-flex items-center">
-                    <input type="radio" name="Met Before" value="No" class="mr-2" required>
-                    <span>No</span>
-                </label>
-            </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:12px">
+          <div>
+            <div class="small">Amount</div>
+            <div style="font-weight:800;font-size:18px" id="payAmount">$40</div>
+          </div>
+
+          <div style="display:flex;gap:8px">
+            <button class="ghost" id="cancelPay">Cancel</button>
+            <button class="btn" id="confirmPay">Confirm Payment</button>
+          </div>
         </div>
+      </div>
     </div>
 
-    <div>
-        <label for="favorite" class="block text-gray-700 font-medium mb-2">Favorite Jennifer Aniston Work*</label>
-        <select id="favorite" name="Favorite Work" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
-            <option value="">Select one</option>
-            <option value="Friends">Friends</option>
-            <option value="The Morning Show">The Morning Show</option>
-            <option value="Marley & Me">Marley & Me</option>
-            <option value="The Break-Up">The Break-Up</option>
-            <option value="Cake">Cake</option>
-            <option value="Horrible Bosses">Horrible Bosses</option>
-            <option value="Office Space">Office Space</option>
-            <option value="We're the Millers">We're the Millers</option>
-            <option value="Other">Other</option>
-        </select>
-    </div>
+    <!-- Notifications -->
+    <div class="toast-wrap" id="toastWrap"></div>
+  </div>
 
-    <div>
-        <label for="why" class="block text-gray-700 font-medium mb-2">Why should you be selected?*</label>
-        <textarea id="why" name="Why Selected" rows="5" minlength="250" maxlength="2000" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" required></textarea>
-    </div>
-
-    <div>
-        <input type="checkbox" id="availability" name="Available to Travel" value="Yes" class="mr-2" required>
-        <label for="availability" class="text-gray-700">I confirm I'm available to travel to Los Angeles*</label>
-    </div>
-
-    <div>
-        <input type="checkbox" id="agree" name="Agreed to Terms" value="Yes" class="mr-2" required>
-        <label for="agree" class="text-gray-700">I certify all information is accurate*</label>
-    </div>
-
-    <div>
-        <button type="submit" class="w-full bg-indigo-600 text-white py-3 rounded-lg font-bold hover:bg-indigo-700 transition-all">
-            Submit Application
-        </button>
-    </div>
-</form>
-
-        </div>
-    </div>
-<!-- (REMOVED) Confirmation Modal: no longer included -->
-
-<script>
-    const modalOverlay = document.getElementById('modalOverlay');
-    const applicationModal = document.getElementById('applicationModal');
-    const closeModal = document.getElementById('closeModal');
-
-    const applyButtons = [
-        document.getElementById('applyHeroBtn'),
-        document.getElementById('applyNavBtn'),
-        document.getElementById('applyAboutBtn'),
-        document.getElementById('applyBottomBtn')
+  <script>
+    /* ---------------------------------------------
+       Data model
+       --------------------------------------------- */
+    const STATES = [
+      { id:'tennessee', label:'Tennessee', votes:720, color:'#ff8fab' },
+      { id:'georgia', label:'Georgia', votes:880, color:'#ffd166' },
+      { id:'newyork', label:'New York', votes:820, color:'#8bd3ff' },
+      { id:'mississippi', label:'Mississippi', votes:1540, color:'#9bffb2' },
+      { id:'alabama', label:'Alabama', votes:1460, color:'#d6b3ff' }
     ];
 
-    function openModal() {
-        modalOverlay.style.display = 'block';
-        applicationModal.style.display = 'block';
-        document.body.style.overflow = 'hidden';
+    const PACKAGES = [
+      {votes:100, price:10},
+      {votes:200, price:18},
+      {votes:500, price:40},
+      {votes:1000, price:80, discount:20, raffle:true} // 20% off shown
+    ];
+
+    // Random names generator for live feed
+    const FIRST = ['Ayo','Chike','Maya','Tunde','Kemi','Sam','Laila','Olu','Rita','Ben','Tari','Hannah','Ike','Nina'];
+    const LAST = ['Okoro','Smith','Johnson','Ade','Brown','Kim','Wright','Osei','Garcia','Lopez','Nguyen','Patel'];
+
+    function randName(){
+      const a = FIRST[Math.floor(Math.random()*FIRST.length)];
+      const b = LAST[Math.floor(Math.random()*LAST.length)];
+      return a + ' ' + b;
     }
 
-    function closeModalFunc() {
-        modalOverlay.style.display = 'none';
-        applicationModal.style.display = 'none';
-        document.body.style.overflow = 'auto';
+    // App state
+    let selectedState = 'mississippi';
+    let selectedPkg = PACKAGES[2]; // default 500
+    let totalVotes = STATES.reduce((s,x)=>s+x.votes,0);
+
+    // Initial DOM hooks
+    const optionsList = document.getElementById('optionsList');
+    const recentVotes = document.getElementById('recentVotes');
+    const selectedStateEl = document.getElementById('selectedState');
+    const selectedPkgEl = document.getElementById('selectedPackage');
+    const payAmountEl = document.getElementById('payAmount');
+    const totalVotesEl = document.getElementById('totalVotes');
+
+    totalVotesEl.textContent = totalVotes.toLocaleString();
+
+    /* ---------------------------------------------
+       Build options UI
+       --------------------------------------------- */
+    function renderOptions(){
+      optionsList.innerHTML = '';
+      const maxVotes = Math.max(...STATES.map(s=>s.votes));
+      STATES.forEach(s=>{
+        const pct = Math.round((s.votes / (totalVotes || 1)) * 100);
+        const option = document.createElement('div');
+        option.className = 'option';
+        option.innerHTML = `
+          <div class="meta">
+            <div class="name">${s.label}</div>
+            <div class="sub">${s.votes.toLocaleString()} votes • ${pct}%</div>
+            <div class="progress-wrap"><div class="progress"><div class="bar" data-state="${s.id}" style="width:${Math.max(4,pct)}%"></div></div></div>
+          </div>
+          <div style="text-align:right">
+            <div style="font-weight:800">Vote</div>
+            <div style="font-size:12px;color:#9fb3d9">Click to select</div>
+          </div>
+        `;
+        option.onclick = () => { selectState(s.id); }
+        optionsList.appendChild(option);
+      });
     }
 
-    applyButtons.forEach(button => {
-        if (button) {
-            button.addEventListener('click', openModal);
+    function selectState(id){
+      selectedState = id;
+      selectedStateEl.textContent = STATES.find(s=>s.id===id).label;
+      highlightSelected();
+    }
+
+    function highlightSelected(){
+      // update selected classes visually
+      const bars = document.querySelectorAll('.option');
+      bars.forEach(b=>{b.style.boxShadow='none'});
+      // Update selected package text
+      selectedPkgEl.textContent = selectedPkg.votes + ' Votes';
+      updatePayAmount();
+    }
+
+    function updatePayAmount(){
+      let price = selectedPkg.price;
+      // show discount label if package has discount
+      if(selectedPkg.discount){
+        payAmountEl.innerHTML = `$${price} <small style="color:#9fb3d9">(${selectedPkg.discount}% off)</small>`;
+      } else {
+        payAmountEl.textContent = `$${price}`;
+      }
+    }
+
+    /* ---------------------------------------------
+       Chart setup (Chart.js)
+       --------------------------------------------- */
+    const ctx = document.getElementById('stateChart').getContext('2d');
+    const chart = new Chart(ctx, {
+      type:'bar',
+      data:{
+        labels: STATES.map(s=>s.label),
+        datasets:[{
+          label:'Votes',
+          data: STATES.map(s=>s.votes),
+          backgroundColor: STATES.map(s=>s.color),
+          borderRadius:8
+        }]
+      },
+      options:{
+        responsive:true,maintainAspectRatio:false,
+        plugins:{legend:{display:false}},
+        scales:{y:{beginAtZero:true}}
+      }
+    });
+
+    /* ---------------------------------------------
+       Recent votes feed
+       --------------------------------------------- */
+    function pushRecentVote(name, stateLabel, amt){
+      const item = document.createElement('div');
+      item.className = 'vote-item';
+      item.innerHTML = `<div><div class="who">${name}</div><div class="small" style="color:#9fb3d9">voted ${amt} votes to ${stateLabel}</div></div><div class="amt">${amt}</div>`;
+      recentVotes.prepend(item);
+      if(recentVotes.children.length>40) recentVotes.removeChild(recentVotes.lastChild);
+    }
+
+    // Seed initial recent votes
+    for(let i=0;i<12;i++){
+      const s = STATES[Math.floor(Math.random()*STATES.length)];
+      pushRecentVote(randName(), s.label, [100,200,500,1000][Math.floor(Math.random()*4)]);
+    }
+
+    /* ---------------------------------------------
+       Toast notifications
+       --------------------------------------------- */
+    const toastWrap = document.getElementById('toastWrap');
+    function showToast(name, amt, state){
+      const t = document.createElement('div');
+      t.className = 'toast';
+      t.innerHTML = `<div class="who">${name}</div><div class="small" style="color:#9fb3d9">voted ${amt} votes • ${state}</div>`;
+      toastWrap.appendChild(t);
+      setTimeout(()=>{t.style.opacity=0; t.style.transform='translateX(20px)';},4200);
+      setTimeout(()=>{try{toastWrap.removeChild(t)}catch(e){}},5200);
+    }
+
+    /* ---------------------------------------------
+       Voting mechanics (mock only)
+       --------------------------------------------- */
+    function castVote(stateId, votes, payer){
+      // update data model
+      const st = STATES.find(s=>s.id===stateId);
+      st.votes += votes;
+      totalVotes += votes;
+      // update UI
+      chart.data.datasets[0].data = STATES.map(s=>s.votes);
+      chart.update();
+      totalVotesEl.textContent = totalVotes.toLocaleString();
+      pushRecentVote(payer.name, st.label, votes);
+      showToast(payer.name, votes, st.label);
+      renderOptions();
+
+      // animate progress bar width for state
+      const bar = document.querySelector(`.bar[data-state="${stateId}"]`);
+      if(bar){
+        const pct = Math.round((st.votes / (totalVotes || 1)) * 100);
+        bar.style.width = Math.max(4,pct) + '%';
+      }
+    }
+
+    /* ---------------------------------------------
+       Simulate live votes to make it look real
+       --------------------------------------------- */
+    function simulateLiveVote(){
+      const namesCount = Math.floor(Math.random()*3)+1; // 1-3 people
+      for(let i=0;i<namesCount;i++){
+        const state = Math.random() < 0.35 ? STATES.find(s=>s.id==='mississippi') : STATES[Math.floor(Math.random()*STATES.length)];
+        const pack = Math.random() < 0.12 ? PACKAGES[3] : (Math.random()<0.35 ? PACKAGES[2] : (Math.random()<0.5?PACKAGES[1]:PACKAGES[0]));
+        const name = randName();
+        castVote(state.id, pack.votes, {name});
+      }
+    }
+
+    // Start simulated stream but keep it gentle
+    setInterval(simulateLiveVote, 7000);
+
+    /* ---------------------------------------------
+       Payment modal and flow (NO REAL PROCESSING)
+       --------------------------------------------- */
+    const modal = document.getElementById('modalBackdrop');
+    const openPay = document.getElementById('openPay');
+    const cancelPay = document.getElementById('cancelPay');
+    const confirmPay = document.getElementById('confirmPay');
+    const payMethods = document.querySelectorAll('.pay-method');
+
+    openPay.onclick = ()=>{ modal.style.display='flex'; updatePayAmount(); }
+    cancelPay.onclick = ()=>{ modal.style.display='none'; }
+
+    payMethods.forEach(pm=>pm.addEventListener('click',()=>{
+      payMethods.forEach(x=>x.classList.remove('active'));
+      pm.classList.add('active');
+    }))
+
+    confirmPay.onclick = ()=>{
+      // Create fake payer
+      const payerName = document.getElementById('payerName').value || randName();
+      const payer = {name: payerName};
+      // Confirm package and state
+      castVote(selectedState, selectedPkg.votes, payer);
+      // If package had raffle entry, show special toast
+      if(selectedPkg.raffle){
+        showToast('🎟️ Raffle Entry', `${payerName} entered raffle with ${selectedPkg.votes} votes`, STATES.find(s=>s.id===selectedState).label);
+      }
+      modal.style.display='none';
+    }
+
+    /* ---------------------------------------------
+       Package selection UI
+       --------------------------------------------- */
+    function renderPackages(){
+      const container = document.createElement('div');
+      container.style.marginTop='12px';
+      const wrap = document.createElement('div');
+      wrap.className='vote-qty';
+
+      PACKAGES.forEach(pkg=>{
+        const btn = document.createElement('button');
+        btn.textContent = pkg.votes + ' votes';
+        if(pkg.votes===selectedPkg.votes) btn.classList.add('active');
+        btn.onclick = ()=>{
+          selectedPkg = pkg; document.querySelectorAll('.vote-qty button').forEach(b=>b.classList.remove('active')); btn.classList.add('active'); selectedPkgEl.textContent = pkg.votes + ' Votes'; updatePayAmount();
         }
+        wrap.appendChild(btn);
+      });
+
+      return wrap;
+    }
+
+    /* ---------------------------------------------
+       Wire up interaction placeholders
+       --------------------------------------------- */
+    document.getElementById('voteNow').onclick = ()=>{ openPay.click(); }
+    document.getElementById('autoVote').onclick = ()=>{ for(let i=0;i<5;i++){ castVote(selectedState, selectedPkg.votes, {name: 'AutoFan '+(i+1)}) } }
+    document.getElementById('topupBtn').onclick = ()=>{ showToast('Wallet','Top up flow (demo)',''); }
+
+    /* ---------------------------------------------
+       Populate option list and packages into DOM
+       --------------------------------------------- */
+    function buildUI(){
+      renderOptions();
+      // append packages area into first card
+      const firstCard = document.querySelector('.card');
+      const pkWrap = renderPackages();
+      firstCard.appendChild(pkWrap);
+      highlightSelected();
+      updatePayAmount();
+    }
+
+    buildUI();
+
+    /* ---------------------------------------------
+       Small helpers: pre-select Mississippi & Alabama order
+       --------------------------------------------- */
+    // ensure Mississippi and Alabama top two in chart order visually
+    function reorderToShowLeaders(){
+      // We do not change data order globally; just make sure the UI shows Mississippi leading and Alabama second
+      const ms = STATES.find(s=>s.id==='mississippi');
+      const al = STATES.find(s=>s.id==='alabama');
+      // if not top two, bump them slightly
+      if(!(ms.votes >= Math.max(...STATES.map(x=>x.votes)))){
+        ms.votes = Math.max(...STATES.map(x=>x.votes)) + 60;
+      }
+      if(!(al.votes >= STATES.filter(x=>x.id!==ms.id).reduce((a,b)=>Math.max(a,b.votes),0))){
+        al.votes = Math.max(...STATES.filter(x=>x.id!==ms.id).map(x=>x.votes)) + 10;
+      }
+      totalVotes = STATES.reduce((s,x)=>s+x.votes,0);
+      chart.data.datasets[0].data = STATES.map(s=>s.votes);
+      chart.update();
+      totalVotesEl.textContent = totalVotes.toLocaleString();
+      renderOptions();
+    }
+
+    // enforce initial leader ordering (user requested Mississippi then Alabama)
+    reorderToShowLeaders();
+
+    /* ---------------------------------------------
+       Random live notifications to emulate others voting
+       --------------------------------------------- */
+    const randomNames = Array.from({length:40}).map(randName);
+    function randomNotifier(){
+      const name = randomNames[Math.floor(Math.random()*randomNames.length)];
+      const state = STATES[Math.floor(Math.random()*STATES.length)];
+      const amt = [100,200,500,1000][Math.floor(Math.random()*4)];
+      showToast(name, amt, state.label);
+    }
+    setInterval(randomNotifier, 11000);
+
+    /* ---------------------------------------------
+       Accessibility shortcuts
+       --------------------------------------------- */
+    document.addEventListener('keydown', (e)=>{
+      if(e.key==='Escape') modal.style.display='none';
     });
 
-    modalOverlay.addEventListener('click', closeModalFunc);
-    closeModal.addEventListener('click', closeModalFunc);
+    /* ---------------------------------------------
+       Final notes in console for developer
+       --------------------------------------------- */
+    console.log('Thane Rivers Voting Dashboard (Demo) initialized');
 
-    // Prevent modal close when clicking inside modal
-    applicationModal.addEventListener('click', function(e) {
-        e.stopPropagation();
-    });
-
-    // 🧼 Removed form submit JS handler so FormSubmit.co works
-    // 🧼 Removed confirmation modal code
-
-    // Mobile menu toggle
-    document.getElementById('mobileMenuBtn').addEventListener('click', function () {
-        alert("Mobile menu would open here in a full implementation");
-    });
-
-    // Smooth scrolling for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-
-            const targetId = this.getAttribute('href');
-            if (targetId === '#') return;
-
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-                window.scrollTo({
-                    top: targetElement.offsetTop - 80,
-                    behavior: 'smooth'
-                });
-            }
-        });
-    });
-</script>
+  </script>
 </body>
 </html>
