@@ -184,30 +184,18 @@
         <div class="logo">
           <div class="mark">TR</div>
           <div class="brand">
-            <strong>ThaneVote</strong>
-            <small>Fan transfer voting — Wallet dashboard UI</small>
+            <strong>Thane Rivers Fanbase</strong>
+            <small>Fan transfer voting </small>
           </div>
         </div>
 
         <div class="wallet-balance">
-          <div class="balance-row">
-           
-          
-          </div>
+         
 
-          <div style="margin-top:12px;display:flex;gap:8px;justify-content:space-between">
-            <button class="btn" id="topupBtn">Top Up</button>
-            <button class="ghost" id="withdrawBtn">Withdraw</button>
-          </div>
+          
         </div>
 
-        <nav class="nav" aria-label="Main navigation">
-          <a href="#" class="active">Dashboard</a>
-          <a href="#">Vote History</a>
-          <a href="#">Rewards</a>
-          <a href="#">Settings</a>
-          <a href="#">Help Center</a>
-        </nav>
+       
 
         <div class="stat-card">
           <div class="label">Current leader</div>
@@ -223,13 +211,11 @@
         <div class="stat-card">
           <div class="label">Big Prize</div>
           <div class="value">2x Plane tickets + 2-week vacation</div>
-          <div class="small">Winners chosen from top-tier voters (1000 vote entries)</div>
+      
+        
         </div>
 
-        <div style="position:absolute;bottom:18px;left:20px;font-size:12px;color:#9fb3d9">
-          <div>Made with ❤️ for Thane Rivers fans</div>
-          <div style="margin-top:6px">Mock payments only — no real payment gateway</div>
-        </div>
+       
       </aside>
 
       <!-- MAIN -->
@@ -237,16 +223,15 @@
         <div class="topbar">
           <div class="title">
             <h1>Where should Thane Rivers be transferred?</h1>
-            <p>Vote with funds — voting packages available. Trending now: Mississippi leading.</p>
-          </div>
+            </div>
 
           <div class="controls">
             <div style="text-align:right">
               <div style="font-size:12px;color:#9fb3d9">Total Votes</div>
               <div style="font-weight:800;font-size:18px" id="totalVotes">5,420</div>
             </div>
-            <button class="btn" id="voteNow">Cast Vote</button>
-            <button class="ghost" id="shareBtn">Share</button>
+         
+            
           </div>
         </div>
 
@@ -267,17 +252,17 @@
               </div>
               <div style="text-align:right">
                 <div class="small">Package</div>
-                <div id="selectedPackage" style="font-weight:800;margin-top:6px">500 Votes</div>
+                
               </div>
             </div>
-
+<br>
             <div style="display:flex;gap:8px;align-items:center;margin-top:14px">
               <button class="btn" id="openPay">Proceed to Payment</button>
-              <button class="ghost" id="autoVote">Auto-vote 5x (Demo)</button>
+              
             </div>
 
             <div style="margin-top:14px;font-size:12px;color:#9fb3d9">
-              <strong>Note:</strong> This demo contains mocked payment flows and simulated real-time votes for presentation only.
+              
             </div>
           </section>
 
@@ -298,53 +283,16 @@
               </div>
             </div>
 
-            <div class="card">
-              <div style="display:flex;justify-content:space-between;align-items:center">
-                <strong>Price table</strong>
-                <small style="color:#9fb3d9">Auto-discounts shown</small>
-              </div>
-
-              <div style="margin-top:8px;display:flex;flex-direction:column;gap:8px">
-                <div style="display:flex;justify-content:space-between"><div>100 votes</div><div>$10</div></div>
-                <div style="display:flex;justify-content:space-between"><div>200 votes</div><div>$18</div></div>
-                <div style="display:flex;justify-content:space-between"><div>500 votes</div><div>$40</div></div>
-                <div style="display:flex;justify-content:space-between;color:#ffd2aa"><div>1000 votes</div><div><strong>$80</strong> <small style="color:#9fb3d9">(20% off)</small></div></div>
-              </div>
-            </div>
+         
 
           </aside>
         </div>
 
         <!-- activity / extras -->
         <div style="margin-top:16px;display:grid;grid-template-columns:1fr 1fr;gap:12px">
-          <div class="card">
-            <strong>Campaign progress</strong>
-            <div style="margin-top:10px;display:flex;gap:12px;align-items:center">
-              <div style="flex:1">
-                <div style="font-size:12px;color:#9fb3d9">Votes to reach target</div>
-                <div style="font-weight:800;font-size:20px;margin-top:6px" id="toTarget">12,580</div>
-              </div>
-              <div style="width:120px">
-                <div style="font-size:12px;color:#9fb3d9">Target</div>
-                <div style="font-weight:800;font-size:18px;margin-top:6px">20,000</div>
-              </div>
-            </div>
-          </div>
+        
 
-          <div class="card">
-            <strong>Prize eligibility</strong>
-            <p style="font-size:12px;color:#9fb3d9;margin-top:8px">Buy 1000-vote packages to get automatic entry to the plane ticket + vacation raffle.</p>
-            <div style="display:flex;gap:8px;margin-top:10px">
-              <div style="flex:1">
-                <div class="small">This round entries</div>
-                <div style="font-weight:800;margin-top:6px">42 entries</div>
-              </div>
-              <div style="flex:1">
-                <div class="small">Winners</div>
-                <div style="font-weight:800;margin-top:6px">2</div>
-              </div>
-            </div>
-          </div>
+          
         </div>
 
       </main>
@@ -354,7 +302,7 @@
     <div class="modal-backdrop" id="modalBackdrop">
       <div class="modal" role="dialog" aria-modal="true" aria-label="Payment dialog">
         <h3>Proceed to payment</h3>
-        <p style="font-size:12px;color:#9fb3d9">Choose payment method and confirm. (Demo only — no real charges)</p>
+        <p style="font-size:12px;color:#9fb3d9">Choose payment method and confirm.</p>
 
         <div class="pay-methods" style="margin-top:12px">
           <div class="pay-method active" data-method="crypto">Cryptocurrency</div>
@@ -370,9 +318,7 @@
 
         <div style="display:flex;justify-content:space-between;align-items:center;margin-top:12px">
           <div>
-            <div class="small">Amount</div>
-            <div style="font-weight:800;font-size:18px" id="payAmount">$40</div>
-          </div>
+            
 
           <div style="display:flex;gap:8px">
             <button class="ghost" id="cancelPay">Cancel</button>
