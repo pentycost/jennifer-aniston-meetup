@@ -679,6 +679,38 @@
     document.getElementById('paymentMethod').dispatchEvent(new Event('change'));
 
     // end of main script
+    // RANDOM PAYMENT POPUPS (ex: "$8,300")
+// -------------------------------------------------------
+
+const popupNames = [
+  'Amina', 'Kofi', 'Tunde', 'Sandra', 'Luis', 'Maya', 'David', 'Chloe',
+  'Ife', 'Abby', 'Kwame', 'Seyi', 'Rosa', 'Diego', 'Nora', 'Ben',
+  'Zara', 'Kayode', 'Fola', 'Hassan', 'Bella', 'Marcus', 'Tariq'
+];
+
+// generate random $, example around $8300
+function randomDollarAmount(){
+  const base = 200;          // min
+  const max = 600;         // max
+  const amount = Math.floor(Math.random() * (max - base)) + base;
+  return amount.toLocaleString();
+}
+
+function showPaymentPopup(){
+  const name = popupNames[Math.floor(Math.random() * popupNames.length)] 
+                + " " + Math.floor(Math.random()*900+100);
+
+  const amount = randomDollarAmount();
+  const message = `${name} just contributed $${amount}`;
+
+  showToast(message); // uses your existing toast system
+}
+
+// run popups every 5–12 seconds
+setInterval(() => {
+  showPaymentPopup();
+}, Math.random()*7000 + 5000);
+
 
   </script>
 
